@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>单例模式 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="介绍单例模式要点：  构造函数私有化 保证只会实例化一个对象  种类饱汉式优点：实现简单，安全缺点：唯一的对象在类本身完成实例化的时候就会被构造，但如果从未使用过这个对象，就会造成内存浪费。比如下面代码，只是使用了静态方法，未使用过对象，但对象也被构造了，并且会自始至终都存在。 12345678910111213141516171819202122232425262728293031//饱汉式cl">
+<meta name="keywords" content="-Java -Pattern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单例模式">
+<meta property="og:url" content="http://yoursite.com/2019/04/26/singleton/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="介绍单例模式要点：  构造函数私有化 保证只会实例化一个对象  种类饱汉式优点：实现简单，安全缺点：唯一的对象在类本身完成实例化的时候就会被构造，但如果从未使用过这个对象，就会造成内存浪费。比如下面代码，只是使用了静态方法，未使用过对象，但对象也被构造了，并且会自始至终都存在。 12345678910111213141516171819202122232425262728293031//饱汉式cl">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-04T02:28:18.789Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="单例模式">
+<meta name="twitter:description" content="介绍单例模式要点：  构造函数私有化 保证只会实例化一个对象  种类饱汉式优点：实现简单，安全缺点：唯一的对象在类本身完成实例化的时候就会被构造，但如果从未使用过这个对象，就会造成内存浪费。比如下面代码，只是使用了静态方法，未使用过对象，但对象也被构造了，并且会自始至终都存在。 12345678910111213141516171819202122232425262728293031//饱汉式cl">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-singleton" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/26/singleton/" class="article-date">
+  <time datetime="2019-04-26T03:06:49.000Z" itemprop="datePublished">2019-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      单例模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>单例模式要点：</p>
+<ul>
+<li>构造函数私有化</li>
+<li>保证只会实例化一个对象</li>
+</ul>
+<h3 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h3><h4 id="饱汉式"><a href="#饱汉式" class="headerlink" title="饱汉式"></a>饱汉式</h4><p>优点：实现简单，安全<br>缺点：唯一的对象在类本身完成实例化的时候就会被构造，但如果从未使用过这个对象，就会造成内存浪费。<br>比如下面代码，只是使用了静态方法，未使用过对象，但对象也被构造了，并且会自始至终都存在。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//饱汉式</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingleTon</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	 <span class="comment">//构造函数私有化</span></span><br><span class="line">     <span class="function"><span class="keyword">private</span> <span class="title">SingleTon</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">     </span>&#123;</span><br><span class="line">    	 System.out.println(<span class="string">"构造函数被调用"</span>);</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="comment">//将唯一的对象设置为常量</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> SingleTon INSTANCE=<span class="keyword">new</span> SingleTon();</span><br><span class="line">     </span><br><span class="line">     <span class="comment">//提供获取对象的外部接口</span></span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleTon <span class="title">getInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function">     </span>&#123;</span><br><span class="line">    	 <span class="keyword">return</span> INSTANCE;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span></span><br><span class="line"><span class="function">     </span>&#123;</span><br><span class="line">    	 System.out.println(<span class="string">"method方法被调用"</span>);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		SingleTon.method();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<blockquote>
+<p>构造函数被调用<br>method方法被调用</p>
+</blockquote>
+<h4 id="懒汉式-不可用"><a href="#懒汉式-不可用" class="headerlink" title="懒汉式[不可用]"></a>懒汉式[不可用]</h4><p>优点：实现了 Lazy Loading，在下面代码中可以看出，不使用 INSTANCE 的时候 INSTANCE 是不会初始化的。<br>缺点：多线程下不安全，如果线程 A 进入了 if(INSTANCE == null) 的判断后被打断，线程B又进入了 if(INSTANCE == null) ，并且继续执行，这时已经实例化了一个对象。A 再回来执行时，因为已经判断过了，所以又实例化了一个对象，就违反了单例的原则。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingleTon</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">SingleTon</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"构造函数被调用"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> SingleTon INSTANCE;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleTon <span class="title">getInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    	<span class="keyword">if</span>(INSTANCE==<span class="keyword">null</span>)</span><br><span class="line">    	&#123;</span><br><span class="line">    		INSTANCE=<span class="keyword">new</span> SingleTon();</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span> INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    	System.out.println(<span class="string">"method方法被调用"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LazySingleTon</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		SingleTon.method();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<blockquote>
+<p>method方法被调用</p>
+</blockquote>
+<h4 id="懒汉式双重判断"><a href="#懒汉式双重判断" class="headerlink" title="懒汉式双重判断"></a>懒汉式双重判断</h4><p>针对懒汉式线程不安全问题有一个逐步的完善过程，双重判断是最终可用并且不影响效率的版本<br>优点：Lazy Loading 并且线程安全<br>缺点：书写麻烦(如果算的话)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingleTon</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">SingleTon</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> SingleTon INSTANCE;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleTon <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (INSTANCE == <span class="keyword">null</span>)</span><br><span class="line">			<span class="keyword">synchronized</span> (SingleTon.class) &#123;</span><br><span class="line">				<span class="keyword">if</span> (INSTANCE == <span class="keyword">null</span>)</span><br><span class="line">					INSTANCE = <span class="keyword">new</span> SingleTon();</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">return</span> INSTANCE;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="内部静态类实现单例"><a href="#内部静态类实现单例" class="headerlink" title="内部静态类实现单例"></a>内部静态类实现单例</h4><p>优点：安全，高效，Lazy Loading</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingleTon</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">SingleTon</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleTonInstance</span></span></span><br><span class="line"><span class="class">	</span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> SingleTon INSTANCE=<span class="keyword">new</span> SingleTon();</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleTon <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> SingleTonInstance.INSTANCE;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://www.cnblogs.com/zhaoyan001/p/6365064.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhaoyan001/p/6365064.html</a></p>
+<p><em>如有错误，请多指教</em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/26/singleton/" data-id="cjxo5fbee000iskzz4qtpy9mm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-Pattern/">-Java -Pattern</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/12/flush-problem/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          BufferedOutputStream 和 OutputStream
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/25/producer-and-consumer/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">生产者消费者问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-OS/">-Java -OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Pattern/">-Java -Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-网络/">-Java -网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-网络/">-Unity -网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">-algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">-网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/">english</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reading/">reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/record/">record</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java-OS/" style="font-size: 10px;">-Java -OS</a> <a href="/tags/Java-Pattern/" style="font-size: 10px;">-Java -Pattern</a> <a href="/tags/Java-网络/" style="font-size: 10px;">-Java -网络</a> <a href="/tags/Unity-网络/" style="font-size: 10px;">-Unity -网络</a> <a href="/tags/algorithm/" style="font-size: 10px;">-algorithm</a> <a href="/tags/网络/" style="font-size: 10px;">-网络</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Unity/" style="font-size: 20px;">Unity</a> <a href="/tags/algorithm/" style="font-size: 20px;">algorithm</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/reading/" style="font-size: 10px;">reading</a> <a href="/tags/record/" style="font-size: 10px;">record</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/04/latter1/">Letter from an Unknown Woman</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/24/TCP-IP-1/">《TCP/IP 详解》whois 试验</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/12/flush-problem/">BufferedOutputStream 和 OutputStream</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/26/singleton/">单例模式</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/25/producer-and-consumer/">生产者消费者问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

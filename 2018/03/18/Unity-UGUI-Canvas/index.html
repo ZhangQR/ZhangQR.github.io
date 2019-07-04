@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>UGUI Canvas三种渲染模式及渲染顺序 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="面板 RenderMode 分析Screen Space-Overlay渲染到屏幕空间，覆盖模式，在所有 gameobjects 的上面 (类比手机贴膜)。sort order：指的是前后顺序，1在0的前面，像order in layer，值越小越先渲染，值越大，越后渲染。(类比刷墙 - - )在此模式下，不能改变 Rect Transform。 Screen Space-Camera渲染到屏幕空">
+<meta name="keywords" content="Unity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UGUI Canvas三种渲染模式及渲染顺序">
+<meta property="og:url" content="http://yoursite.com/2018/03/18/Unity-UGUI-Canvas/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="面板 RenderMode 分析Screen Space-Overlay渲染到屏幕空间，覆盖模式，在所有 gameobjects 的上面 (类比手机贴膜)。sort order：指的是前后顺序，1在0的前面，像order in layer，值越小越先渲染，值越大，越后渲染。(类比刷墙 - - )在此模式下，不能改变 Rect Transform。 Screen Space-Camera渲染到屏幕空">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/UGUI.jpg">
+<meta property="og:updated_time" content="2019-07-04T03:12:14.757Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UGUI Canvas三种渲染模式及渲染顺序">
+<meta name="twitter:description" content="面板 RenderMode 分析Screen Space-Overlay渲染到屏幕空间，覆盖模式，在所有 gameobjects 的上面 (类比手机贴膜)。sort order：指的是前后顺序，1在0的前面，像order in layer，值越小越先渲染，值越大，越后渲染。(类比刷墙 - - )在此模式下，不能改变 Rect Transform。 Screen Space-Camera渲染到屏幕空">
+<meta name="twitter:image" content="http://yoursite.com/img/UGUI.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Unity-UGUI-Canvas" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/18/Unity-UGUI-Canvas/" class="article-date">
+  <time datetime="2018-03-17T16:15:36.000Z" itemprop="datePublished">2018-03-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      UGUI Canvas三种渲染模式及渲染顺序
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="面板"><a href="#面板" class="headerlink" title="面板"></a>面板</h3><p><img src="/img/UGUI.jpg" alt></p>
+<h3 id="RenderMode-分析"><a href="#RenderMode-分析" class="headerlink" title="RenderMode 分析"></a>RenderMode 分析</h3><h4 id="Screen-Space-Overlay"><a href="#Screen-Space-Overlay" class="headerlink" title="Screen Space-Overlay"></a>Screen Space-Overlay</h4><p>渲染到屏幕空间，覆盖模式，在所有 gameobjects 的上面 (类比手机贴膜)。<br>sort order：指的是前后顺序，1在0的前面，像order in layer，值越小越先渲染，值越大，越后渲染。(类比刷墙 - - )<br>在此模式下，不能改变 Rect Transform。</p>
+<h4 id="Screen-Space-Camera"><a href="#Screen-Space-Camera" class="headerlink" title="Screen Space-Camera"></a>Screen Space-Camera</h4><p>渲染到屏幕空间，用摄像机来渲染。可以更改 Plane Distance 来更改画布到摄像机的距离。这个模式下 Rect Transform 也是锁定的。</p>
+<h4 id="World-Space"><a href="#World-Space" class="headerlink" title="World Space"></a>World Space</h4><p>渲染到世界空间，UI 当成是 gameobject （类比道路指示牌）。<br>Event Camera 接收事件。<br>Sorting Layer 同上，用来控制渲染顺序，越往下的越靠前，Order In Layer 也用来改变渲染顺序，Sorting Layer 占据主导权，即在同一个Layer时，Order Ln Layer 才起作用。<br>这个模式下可以改变 Rect Transform。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/18/Unity-UGUI-Canvas/" data-id="cjxo5fbdx0008skzzklgynu1s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/">Unity</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/18/CF-Robot-Vacuum-Cleaner/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CF Robot Vacuum Cleaner
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/16/longest-palindromic-substring/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">最长回文子串</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-OS/">-Java -OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Pattern/">-Java -Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-网络/">-Java -网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-网络/">-Unity -网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">-algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">-网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/">english</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reading/">reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/record/">record</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java-OS/" style="font-size: 10px;">-Java -OS</a> <a href="/tags/Java-Pattern/" style="font-size: 10px;">-Java -Pattern</a> <a href="/tags/Java-网络/" style="font-size: 10px;">-Java -网络</a> <a href="/tags/Unity-网络/" style="font-size: 10px;">-Unity -网络</a> <a href="/tags/algorithm/" style="font-size: 10px;">-algorithm</a> <a href="/tags/网络/" style="font-size: 10px;">-网络</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Unity/" style="font-size: 20px;">Unity</a> <a href="/tags/algorithm/" style="font-size: 20px;">algorithm</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/reading/" style="font-size: 10px;">reading</a> <a href="/tags/record/" style="font-size: 10px;">record</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/04/latter1/">Letter from an Unknown Woman</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/24/TCP-IP-1/">《TCP/IP 详解》whois 试验</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/12/flush-problem/">BufferedOutputStream 和 OutputStream</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/26/singleton/">单例模式</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/25/producer-and-consumer/">生产者消费者问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

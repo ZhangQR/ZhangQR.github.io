@@ -1,222 +1,238 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Record my life and progress(maybe)">
-    <meta name="keyword" content>
-    <link rel="shortcut icon" href="/img/favicon.ico">
+  <meta charset="utf-8">
+  
 
-    <title>
-        
-        Unity 坦克大战 - ZhangQR的博客 | ZhangQR&#39;s Blog
-        
-    </title>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
+  
+  <title>Unity 坦克大战 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="成果演示移动 射击 掉血与死亡 主场景 音效">
+<meta name="keywords" content="Unity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity 坦克大战">
+<meta property="og:url" content="http://yoursite.com/2017/11/01/tanke/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="成果演示移动 射击 掉血与死亡 主场景 音效">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/tanke_move.gif">
+<meta property="og:image" content="http://yoursite.com/img/tanke_shot.gif">
+<meta property="og:image" content="http://yoursite.com/img/tanke_die.gif">
+<meta property="og:image" content="http://yoursite.com/img/tanke_map.png">
+<meta property="og:image" content="http://yoursite.com/img/tanke_voice.png">
+<meta property="og:updated_time" content="2019-07-04T01:54:12.126Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unity 坦克大战">
+<meta name="twitter:description" content="成果演示移动 射击 掉血与死亡 主场景 音效">
+<meta name="twitter:image" content="http://yoursite.com/img/tanke_move.gif">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
 <body>
-
-<div class="site-nav-toggle" id="site-nav-toggle">
-    <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-    </button>
-</div>
-
-<div class="index-about">
-    <i> A game,a show or a sing. </i>
-</div>
-
-<div class="index-container">
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-tanke" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/01/tanke/" class="article-date">
+  <time datetime="2017-10-31T16:00:00.000Z" itemprop="datePublished">2017-11-01</time>
+</a>
     
-    <div class="index-left">
-        
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar ">
-            <img src="/img/avatar.jpg" />
-        </div>
-        <div class="name">
-            <i>zhangqr</i>
-        </div>
-    </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
-                </a>
-            </li>
-            
-            <li>
-                <a id="search">
-                    <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
-                </a>
-            </li>
-            
-        </ul>
-    </div>
+  </div>
+  <div class="article-inner">
     
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#成果演示"><span class="toc-text">成果演示</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#移动"><span class="toc-text">移动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#射击"><span class="toc-text">射击</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#掉血与死亡"><span class="toc-text">掉血与死亡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#主场景"><span class="toc-text">主场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#音效"><span class="toc-text">音效</span></a></li></ol></li></ol>
-</div>
     
-</div>
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Unity 坦克大战
+    </h1>
+  
 
-
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">搜索</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
-
-        </div>
-    </div>
-</div>
-
-        <div class="index-about-mobile">
-            <i> A game,a show or a sing. </i>
-        </div>
-    </div>
+      </header>
     
-    <div class="index-middle">
-        <!-- Main Content -->
-        
-
-
-<div class="post-container">
-    <div class="post-title">
-        Unity 坦克大战
-    </div>
-
-    <div class="post-meta">
-        <span class="attr">发布于：<span>2017-11-01 00:00:00</span></span>
-        
-        <span class="attr">标签：/
-        
-        <a class="tag" href="/tags/#Unity" title="Unity">Unity</a>
-        <span>/</span>
-        
-        
-        </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content ">
+    <div class="article-entry" itemprop="articleBody">
+      
         <h3 id="成果演示"><a href="#成果演示" class="headerlink" title="成果演示"></a>成果演示</h3><h4 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h4><p><img src="/img/tanke_move.gif" alt></p>
 <h4 id="射击"><a href="#射击" class="headerlink" title="射击"></a>射击</h4><p><img src="/img/tanke_shot.gif" alt></p>
 <h4 id="掉血与死亡"><a href="#掉血与死亡" class="headerlink" title="掉血与死亡"></a>掉血与死亡</h4><p><img src="/img/tanke_die.gif" alt></p>
 <h4 id="主场景"><a href="#主场景" class="headerlink" title="主场景"></a>主场景</h4><p><img src="/img/tanke_map.png" alt></p>
 <h4 id="音效"><a href="#音效" class="headerlink" title="音效"></a>音效</h4><p><img src="/img/tanke_voice.png" alt></p>
 
-        
-        <br />
-        <div id="comment-container">
-        </div>
-        <div id="disqus_thread"></div>
-
-        <div id="lv-container">
-        </div>
-
+      
     </div>
-</div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/01/tanke/" data-id="cjxo5fbeg000kskzzgzdor4il" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/">Unity</a></li></ul>
 
-    </div>
-</div>
-
-
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
-
-        
-        <li>
-            <a target="_blank" href="http://weibo.com/烂醉花间Dlitf">
-                            <span class="fa-stack fa-lg">
-                                  <i class="iconfont icon-weibo"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-
-        
-        <li>
-            <a target="_blank"  href="https://github.com/ZhangQR">
-                            <span class="fa-stack fa-lg">
-                                <i class="iconfont icon-github"></i>
-                            </span>
-            </a>
-        </li>
-        
-
-        
-
-    </ul>
+    </footer>
+  </div>
+  
     
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span>PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span>UV
-        </span>
-        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+<nav id="article-nav">
+  
+    <a href="/2018/03/16/longest-palindromic-substring/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          最长回文子串
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/06/2017-08-24-My-Summer-Holiday-Lives/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">My Summer Holiday Lives</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-OS/">-Java -OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Pattern/">-Java -Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-网络/">-Java -网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity-网络/">-Unity -网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">-algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">-网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/">Unity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/">english</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reading/">reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/record/">record</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java-OS/" style="font-size: 10px;">-Java -OS</a> <a href="/tags/Java-Pattern/" style="font-size: 10px;">-Java -Pattern</a> <a href="/tags/Java-网络/" style="font-size: 10px;">-Java -网络</a> <a href="/tags/Unity-网络/" style="font-size: 10px;">-Unity -网络</a> <a href="/tags/algorithm/" style="font-size: 10px;">-algorithm</a> <a href="/tags/网络/" style="font-size: 10px;">-网络</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Unity/" style="font-size: 20px;">Unity</a> <a href="/tags/algorithm/" style="font-size: 20px;">algorithm</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/reading/" style="font-size: 10px;">reading</a> <a href="/tags/record/" style="font-size: 10px;">record</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/04/latter1/">Letter from an Unknown Woman</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/24/TCP-IP-1/">《TCP/IP 详解》whois 试验</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/12/flush-problem/">BufferedOutputStream 和 OutputStream</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/26/singleton/">单例模式</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/25/producer-and-consumer/">生产者消费者问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
 </footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
 
 
 
-
+  </div>
 </body>
-
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.json"
-    window.hexo_root = "/"
-    window.isPost = true
-</script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-
 </html>
