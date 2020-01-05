@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Record my life and progress(maybe)">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        一起来画画叭~ - ZhangQR的博客 | ZhangQR&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> A game,a show or a sing. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>zhangqr</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#缘起"><span class="toc-text">缘起</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#画图"><span class="toc-text">画图</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> A game,a show or a sing. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        一起来画画叭~
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-01-05 10:45:31</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#c++" title="c++">c++</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h1><p>起因是我在一个函数里面开了一个 socket，大概像。。这样~</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);</span><br><span class="line">    <span class="comment">/* ... */</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="comment">/* ...*/</span>)&#123;</span><br><span class="line">        close(s);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="comment">/* ... */</span>)&#123;</span><br><span class="line">        close(s);</span><br><span class="line">        <span class="keyword">return</span> xx;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>显而易见的一个问题就是必须在每个 return 之前都要手写一个 close(s)，不然调用多次之后就会产生句柄泄露(当我发现这个问题的时候，<code>lsof -p my_pid</code> 已经有一千多条啦<del>)，这样写其实是比较麻烦的，于是 leader 建议可以利用 shared_ptr 的特性——离开作用域的时候释放，来化简代码。处理之后就变成这样</del></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt; p(&amp;s,[](<span class="keyword">int</span> *s)&#123;</span><br><span class="line">        close(*s);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">/* ... */</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="comment">/* ...*/</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="comment">/* ... */</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> xx;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面是这个技巧的简单模型：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> hh =<span class="number">10</span>;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt; p(&amp;hh,[](<span class="keyword">int</span> *hh)&#123;</span><br><span class="line">            *hh = <span class="number">15</span>;</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;*hh&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">"jiujiu"</span>&lt;&lt;hh&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> hh;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">"miaomiao"</span>&lt;&lt;test()&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">"wangwang"</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>按我的理解输出应该是这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">15</span><br><span class="line">jiujiu15</span><br><span class="line">miaomiao15</span><br><span class="line">wangwang</span><br></pre></td></tr></table></figure>
+
+<p>但实际上输出是这样~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">miaomiao15</span><br><span class="line">jiujiu15</span><br><span class="line">15</span><br><span class="line">wangwang</span><br></pre></td></tr></table></figure>
+
+<p>刺激，让我们来看看汇编代码叭~</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Dump</span> of assembler <span class="meta">code</span> for <span class="meta">function</span> main():</span><br><span class="line">   <span class="number">0x00401531</span> &lt;+<span class="number">0</span>&gt;:	lea    <span class="number">0x4</span>(%esp),%ecx</span><br><span class="line">   <span class="number">0x00401535</span> &lt;+<span class="number">4</span>&gt;:	<span class="keyword">and </span>   <span class="number">$0xfffffff0</span>,%esp</span><br><span class="line">   <span class="number">0x00401538</span> &lt;+<span class="number">7</span>&gt;:	<span class="keyword">pushl </span> -<span class="number">0x4</span>(%ecx)</span><br><span class="line">   <span class="number">0x0040153b</span> &lt;+<span class="number">10</span>&gt;:	<span class="keyword">push </span>  %ebp</span><br><span class="line">   <span class="number">0x0040153c</span> &lt;+<span class="number">11</span>&gt;:	<span class="keyword">mov </span>   %esp,%ebp</span><br><span class="line">   <span class="number">0x0040153e</span> &lt;+<span class="number">13</span>&gt;:	<span class="keyword">push </span>  %ebx</span><br><span class="line">   <span class="number">0x0040153f</span> &lt;+<span class="number">14</span>&gt;:	<span class="keyword">push </span>  %ecx</span><br><span class="line">   <span class="number">0x00401540</span> &lt;+<span class="number">15</span>&gt;:	<span class="keyword">sub </span>   <span class="number">$0x10</span>,%esp</span><br><span class="line">   <span class="number">0x00401543</span> &lt;+<span class="number">18</span>&gt;:	call   <span class="number">0x402180</span> &lt;__main&gt;</span><br><span class="line">=&gt; <span class="number">0x00401548</span> &lt;+<span class="number">23</span>&gt;:	<span class="keyword">movl </span>  <span class="number">$0x406071</span>,<span class="number">0x4</span>(%esp)</span><br><span class="line">   <span class="number">0x00401550</span> &lt;+<span class="number">31</span>&gt;:	<span class="keyword">movl </span>  <span class="number">$0x6ff03a20</span>,(%esp)</span><br><span class="line">   <span class="number">0x00401557</span> &lt;+<span class="number">38</span>&gt;:	call   <span class="number">0x401c24</span> &lt;std::<span class="keyword">basic_ostream&lt;char, </span>std::char_traits&lt;char&gt; &gt;&amp; std::operator&lt;&lt; &lt;std::char_traits&lt;char&gt; &gt;(std::<span class="keyword">basic_ostream&lt;char, </span>std::char_traits&lt;char&gt; &gt;&amp;, char const*)&gt;</span><br><span class="line">   <span class="number">0x0040155c</span> &lt;+<span class="number">43</span>&gt;:	<span class="keyword">mov </span>   %eax,%ebx</span><br><span class="line">   <span class="number">0x0040155e</span> &lt;+<span class="number">45</span>&gt;:	call   <span class="number">0x4014c7</span> &lt;test()&gt;</span><br><span class="line">   <span class="number">0x00401563</span> &lt;+<span class="number">50</span>&gt;:	<span class="keyword">mov </span>   %eax,(%esp)</span><br><span class="line">   <span class="number">0x00401566</span> &lt;+<span class="number">53</span>&gt;:	<span class="keyword">mov </span>   %ebx,%ecx</span><br><span class="line">   <span class="number">0x00401568</span> &lt;+<span class="number">55</span>&gt;:	call   <span class="number">0x401c4c</span> &lt;std::ostream::operator&lt;&lt;(int)&gt;</span><br><span class="line">   <span class="number">0x0040156d</span> &lt;+<span class="number">60</span>&gt;:	<span class="keyword">sub </span>   <span class="number">$0x4</span>,%esp</span><br><span class="line">   <span class="number">0x00401570</span> &lt;+<span class="number">63</span>&gt;:	<span class="keyword">movl </span>  <span class="number">$0x401c2c</span>,(%esp)</span><br><span class="line">   <span class="number">0x00401577</span> &lt;+<span class="number">70</span>&gt;:	<span class="keyword">mov </span>   %eax,%ecx</span><br><span class="line">   <span class="number">0x00401579</span> &lt;+<span class="number">72</span>&gt;:	call   <span class="number">0x401c54</span> &lt;std::ostream::operator&lt;&lt;(std::ostream&amp; (*)(std::ostream&amp;))&gt;</span><br><span class="line">   <span class="number">0x0040157e</span> &lt;+<span class="number">77</span>&gt;:	<span class="keyword">sub </span>   <span class="number">$0x4</span>,%esp</span><br><span class="line">   <span class="number">0x00401581</span> &lt;+<span class="number">80</span>&gt;:	<span class="keyword">movl </span>  <span class="number">$0x40607a</span>,<span class="number">0x4</span>(%esp)</span><br><span class="line">   <span class="number">0x00401589</span> &lt;+<span class="number">88</span>&gt;:	<span class="keyword">movl </span>  <span class="number">$0x6ff03a20</span>,(%esp)</span><br><span class="line">   <span class="number">0x00401590</span> &lt;+<span class="number">95</span>&gt;:	call   <span class="number">0x401c24</span> &lt;std::<span class="keyword">basic_ostream&lt;char, </span>std::char_traits&lt;char&gt; &gt;&amp; std::operator&lt;&lt; &lt;std::char_traits&lt;char&gt; &gt;(std::<span class="keyword">basic_ostream&lt;char, </span>std::char_traits&lt;char&gt; &gt;&amp;, char const*)&gt;</span><br><span class="line">   <span class="number">0x00401595</span> &lt;+<span class="number">100</span>&gt;:	<span class="keyword">movl </span>  <span class="number">$0x401c2c</span>,(%esp)</span><br><span class="line">   <span class="number">0x0040159c</span> &lt;+<span class="number">107</span>&gt;:	<span class="keyword">mov </span>   %eax,%ecx</span><br><span class="line">   <span class="number">0x0040159e</span> &lt;+<span class="number">109</span>&gt;:	call   <span class="number">0x401c54</span> &lt;std::ostream::operator&lt;&lt;(std::ostream&amp; (*)(std::ostream&amp;))&gt;</span><br><span class="line">   <span class="number">0x004015a3</span> &lt;+<span class="number">114</span>&gt;:	<span class="keyword">sub </span>   <span class="number">$0x4</span>,%esp</span><br><span class="line">   <span class="number">0x004015a6</span> &lt;+<span class="number">117</span>&gt;:	<span class="keyword">mov </span>   <span class="number">$0x0</span>,%eax</span><br><span class="line">   <span class="number">0x004015ab</span> &lt;+<span class="number">122</span>&gt;:	lea    -<span class="number">0x8</span>(%ebp),%esp</span><br><span class="line">   <span class="number">0x004015ae</span> &lt;+<span class="number">125</span>&gt;:	<span class="keyword">pop </span>   %ecx</span><br><span class="line">   <span class="number">0x004015af</span> &lt;+<span class="number">126</span>&gt;:	<span class="keyword">pop </span>   %ebx</span><br><span class="line">   <span class="number">0x004015b0</span> &lt;+<span class="number">127</span>&gt;:	<span class="keyword">pop </span>   %ebp</span><br><span class="line">   <span class="number">0x004015b1</span> &lt;+<span class="number">128</span>&gt;:	lea    -<span class="number">0x4</span>(%ecx),%esp</span><br><span class="line">   <span class="number">0x004015b4</span> &lt;+<span class="number">131</span>&gt;:	ret    </span><br><span class="line"><span class="symbol">End</span> of assembler dump.</span><br><span class="line"></span><br><span class="line"><span class="symbol">Dump</span> of assembler <span class="meta">code</span> for <span class="meta">function</span> test():</span><br><span class="line">   <span class="number">0x004014c7</span> &lt;+<span class="number">0</span>&gt;:	<span class="keyword">push </span>  %ebp</span><br><span class="line">   <span class="number">0x004014c8</span> &lt;+<span class="number">1</span>&gt;:	<span class="keyword">mov </span>   %esp,%ebp</span><br><span class="line">   <span class="number">0x004014ca</span> &lt;+<span class="number">3</span>&gt;:	<span class="keyword">sub </span>   <span class="number">$0x28</span>,%esp</span><br><span class="line">   <span class="number">0x004014cd</span> &lt;+<span class="number">6</span>&gt;:	<span class="keyword">movl </span>  <span class="number">$0xa</span>,-<span class="number">0x10</span>(%ebp)</span><br><span class="line">   <span class="number">0x004014d4</span> &lt;+<span class="number">13</span>&gt;:	lea    -<span class="number">0x18</span>(%ebp),%eax</span><br><span class="line">   <span class="number">0x004014d7</span> &lt;+<span class="number">16</span>&gt;:	<span class="keyword">mov </span>   %dl,<span class="number">0x4</span>(%esp)</span><br><span class="line">   <span class="number">0x004014db</span> &lt;+<span class="number">20</span>&gt;:	lea    -<span class="number">0x10</span>(%ebp),%edx</span><br><span class="line">   <span class="number">0x004014de</span> &lt;+<span class="number">23</span>&gt;:	<span class="keyword">mov </span>   %edx,(%esp)</span><br><span class="line">   <span class="number">0x004014e1</span> &lt;+<span class="number">26</span>&gt;:	<span class="keyword">mov </span>   %eax,%ecx</span><br><span class="line">   <span class="number">0x004014e3</span> &lt;+<span class="number">28</span>&gt;:	call   <span class="number">0x4015b6</span> &lt;std::shared_ptr&lt;int&gt;::shared_ptr&lt;int, test()::&lt;lambda(int*)&gt; &gt;(int *, &lt;lambda(int*)&gt;)&gt;</span><br><span class="line">   <span class="number">0x004014e8</span> &lt;+<span class="number">33</span>&gt;:	<span class="keyword">sub </span>   <span class="number">$0x8</span>,%esp</span><br><span class="line">   <span class="number">0x004014eb</span> &lt;+<span class="number">36</span>&gt;:	lea    -<span class="number">0x18</span>(%ebp),%eax</span><br><span class="line">   <span class="number">0x004014ee</span> &lt;+<span class="number">39</span>&gt;:	<span class="keyword">mov </span>   %eax,%ecx</span><br><span class="line">   <span class="number">0x004014f0</span> &lt;+<span class="number">41</span>&gt;:	call   <span class="number">0x4043c8</span> &lt;std::shared_ptr&lt;int&gt;::~shared_ptr()&gt;</span><br><span class="line">   <span class="number">0x004014f5</span> &lt;+<span class="number">46</span>&gt;:	<span class="keyword">movl </span>  <span class="number">$0x40606a</span>,<span class="number">0x4</span>(%esp)</span><br><span class="line">   <span class="number">0x004014fd</span> &lt;+<span class="number">54</span>&gt;:	<span class="keyword">movl </span>  <span class="number">$0x6ff03a20</span>,(%esp)</span><br><span class="line">   <span class="number">0x00401504</span> &lt;+<span class="number">61</span>&gt;:	call   <span class="number">0x401c24</span> &lt;std::<span class="keyword">basic_ostream&lt;char, </span>std::char_traits&lt;char&gt; &gt;&amp; std::operator&lt;&lt; &lt;std::char_traits&lt;char&gt; &gt;(std::<span class="keyword">basic_ostream&lt;char, </span>std::char_traits&lt;char&gt; &gt;&amp;, char const*)&gt;</span><br><span class="line">   <span class="number">0x00401509</span> &lt;+<span class="number">66</span>&gt;:	<span class="keyword">mov </span>   %eax,%edx</span><br><span class="line">   <span class="number">0x0040150b</span> &lt;+<span class="number">68</span>&gt;:	<span class="keyword">mov </span>   -<span class="number">0x10</span>(%ebp),%eax</span><br><span class="line">   <span class="number">0x0040150e</span> &lt;+<span class="number">71</span>&gt;:	<span class="keyword">mov </span>   %eax,(%esp)</span><br><span class="line">   <span class="number">0x00401511</span> &lt;+<span class="number">74</span>&gt;:	<span class="keyword">mov </span>   %edx,%ecx</span><br><span class="line">   <span class="number">0x00401513</span> &lt;+<span class="number">76</span>&gt;:	call   <span class="number">0x401c4c</span> &lt;std::ostream::operator&lt;&lt;(int)&gt;</span><br><span class="line">   <span class="number">0x00401518</span> &lt;+<span class="number">81</span>&gt;:	<span class="keyword">sub </span>   <span class="number">$0x4</span>,%esp</span><br><span class="line">   <span class="number">0x0040151b</span> &lt;+<span class="number">84</span>&gt;:	<span class="keyword">movl </span>  <span class="number">$0x401c2c</span>,(%esp)</span><br><span class="line">   <span class="number">0x00401522</span> &lt;+<span class="number">91</span>&gt;:	<span class="keyword">mov </span>   %eax,%ecx</span><br><span class="line">   <span class="number">0x00401524</span> &lt;+<span class="number">93</span>&gt;:	call   <span class="number">0x401c54</span> &lt;std::ostream::operator&lt;&lt;(std::ostream&amp; (*)(std::ostream&amp;))&gt;</span><br><span class="line">   <span class="number">0x00401529</span> &lt;+<span class="number">98</span>&gt;:	<span class="keyword">sub </span>   <span class="number">$0x4</span>,%esp</span><br><span class="line">   <span class="number">0x0040152c</span> &lt;+<span class="number">101</span>&gt;:	<span class="keyword">mov </span>   -<span class="number">0x10</span>(%ebp),%eax</span><br><span class="line">   <span class="number">0x0040152f</span> &lt;+<span class="number">104</span>&gt;:	leave  </span><br><span class="line">   <span class="number">0x00401530</span> &lt;+<span class="number">105</span>&gt;:	ret    </span><br><span class="line"><span class="symbol">End</span> of assembler dump.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">sourece code:</span><br><span class="line">  std::cout&lt;&lt;&quot;miaomiao&quot;&lt;&lt;test()&lt;&lt;std::endl;</span><br><span class="line">asm:</span><br><span class="line">   0x00401531 &lt;+0&gt;:	lea    0x4(%esp),%ecx</span><br><span class="line">   0x00401535 &lt;+4&gt;:	and    $0xfffffff0,%esp</span><br><span class="line">   0x00401538 &lt;+7&gt;:	pushl  -0x4(%ecx)</span><br><span class="line">   0x0040153b &lt;+10&gt;:	push   %ebp</span><br><span class="line">   0x0040153c &lt;+11&gt;:	mov    %esp,%ebp</span><br><span class="line">   0x0040153e &lt;+13&gt;:	push   %ebx</span><br><span class="line">   0x0040153f &lt;+14&gt;:	push   %ecx</span><br><span class="line">   0x00401540 &lt;+15&gt;:	sub    $0x10,%esp</span><br><span class="line">   0x00401543 &lt;+18&gt;:	call   0x402180 &lt;__main&gt;</span><br><span class="line">=&gt; 0x00401548 &lt;+23&gt;:	movl   $0x406071,0x4(%esp)</span><br><span class="line"></span><br><span class="line">gdb:s</span><br><span class="line">source code:</span><br><span class="line">  int hh =10;</span><br><span class="line">asm:</span><br><span class="line">   0x004014c7 &lt;+0&gt;:	push   %ebp</span><br><span class="line">   0x004014c8 &lt;+1&gt;:	mov    %esp,%ebp</span><br><span class="line">   0x004014ca &lt;+3&gt;:	sub    $0x28,%esp</span><br><span class="line">=&gt; 0x004014cd &lt;+6&gt;:	movl   $0xa,-0x10(%ebp)</span><br><span class="line"></span><br><span class="line">可以看到 int hh = 10; 正好对应的就是 movl   $0xa,-0x10(%ebp)</span><br><span class="line"></span><br><span class="line">此时看一下栈的状态:(大地址是栈底，小地址是栈顶哈)</span><br><span class="line">0x29fee0:	0x70	0x7d	0x79	0x66	0x00	0xe0	0xfd	0x7f</span><br><span class="line">0x29fee8:	0x08	0xff	0x29	0x00	0xa9	0x49	0xef	0x6f</span><br><span class="line">0x29fef0:	0x20	0x3a	0xf0	0x6f	0x71	0x60	0x40	0x00</span><br><span class="line">0x29fef8:	0x08	0x00	0x00	0x00	0xcc	0xff	0x29	0x00</span><br><span class="line">0x29ff00:	0xd0	0xd1	0xf0	0x76	0x44	0x0a	0xa5	0x10</span><br><span class="line">可以看到很熟悉的两个地址 0x20	0x3a	0xf0	0x6f(对应 0x00401550 指令)，0x71	0x60	0x40	0x00(对应 0x00401548 指令),顺便一提，0x406071里是猫猫哦~</span><br><span class="line">(gdb) x/16cb 0x406071</span><br><span class="line">0x406071 &lt;std::ignore+8&gt;:	109 &apos;m&apos;	105 &apos;i&apos;	97 &apos;a&apos;	111 &apos;o&apos;	109 &apos;m&apos;	105 &apos;i&apos;	97 &apos;a&apos;	111 &apos;o&apos;</span><br><span class="line">0x406079 &lt;std::ignore+16&gt;:	0 &apos;\000&apos;	119 &apos;w&apos;	97 &apos;a&apos;	110 &apos;n&apos;	103 &apos;g&apos;	119 &apos;w&apos;	97 &apos;a&apos;	110 &apos;n&apos;</span><br><span class="line"></span><br><span class="line">后面 shared_ptr 就不咋能看懂了，直接跳到</span><br><span class="line">source code:</span><br><span class="line">    std::cout&lt;&lt;&quot;jiujiu&quot;&lt;&lt;hh&lt;&lt;std::endl;</span><br><span class="line">asm:</span><br><span class="line">=&gt; 0x004014f5 &lt;+46&gt;:	movl   $0x40606a,0x4(%esp)</span><br><span class="line">   0x004014fd &lt;+54&gt;:	movl   $0x6ff03a20,(%esp)</span><br><span class="line"></span><br><span class="line">   跟上面一样，0x40606a 里面是 jiujiu,顺便怀疑一下，0x6ff03a20是栈的边界保护符！</span><br><span class="line">   </span><br><span class="line">   然后比较诡异的事情就出现了，此时，控制台输出了 miaomiao15。。。</span><br><span class="line"></span><br><span class="line">   然后到</span><br><span class="line">  source code:</span><br><span class="line">       return hh;</span><br><span class="line">  sam:</span><br><span class="line">  =&gt; 0x0040152c &lt;+101&gt;:	mov    -0x10(%ebp),%eax</span><br><span class="line">  这个时候控制台输出了 jiujiu15，可以理解哈</span><br><span class="line"></span><br><span class="line">  继续：</span><br><span class="line">  source code:</span><br><span class="line">  &#125;</span><br><span class="line">  sam:</span><br><span class="line">  =&gt; 0x0040152f &lt;+104&gt;:	leave  </span><br><span class="line">  继续：</span><br><span class="line">  source code:</span><br><span class="line">      std::cout&lt;&lt;&quot;wangwang&quot;&lt;&lt;std::endl;</span><br><span class="line">  asm:</span><br><span class="line">  =&gt; 0x00401581 &lt;+80&gt;:	movl   $0x40607a,0x4(%esp)</span><br><span class="line">  这个时候控制台输出了：15</span><br></pre></td></tr></table></figure>
+
+<p>ok，总结一下目前发现的不合理的点：<br>1、<code>*hh = 15; std::cout&lt;&lt;*hh&lt;&lt;std::endl;</code>这两句没有一起执行，而且在离开 shared_ptr 作用域的时候，第一句是肯定执行了的。<br>2、test 没有 返回之前，miaomiao15 就已经输出了。</p>
+<p>这一切诡异的背后，都指向了一个关键词”缓冲区”，于是我把所有的 cout 换成了 printf，再次运行，快乐的事情发生了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">15</span><br><span class="line">jiujiu15</span><br><span class="line">miaomiao15</span><br><span class="line">wangwang</span><br></pre></td></tr></table></figure>
+
+<p>或者像这个样子，结果也是一样哈</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> hh =<span class="number">10</span>;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt; p(&amp;hh,[](<span class="keyword">int</span> *hh)&#123;</span><br><span class="line">            *hh = <span class="number">15</span>;</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;*hh&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">            <span class="comment">//printf("%d\n",*hh);</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">"jiujiu"</span>&lt;&lt;hh&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//printf("jiujiu%d\n",hh);</span></span><br><span class="line">    <span class="keyword">return</span> hh;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> xixi = test();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">"miaomiao"</span>&lt;&lt;xixi&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//printf("miaomiao%d\n",test());</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">"wangwang"</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="画图"><a href="#画图" class="headerlink" title="画图"></a>画图</h1><blockquote>
+<p>If I can，I wish to see the stream of every bit.  所以透明什么的最讨厌了。。</p>
+</blockquote>
+<p>恰完饭再画图叭~！(或许是明年了。。)</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/烂醉花间Dlitf">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZhangQR">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
