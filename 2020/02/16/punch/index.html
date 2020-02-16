@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Record my life and progress(maybe)">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        pygame simple example - ZhangQR的博客 | ZhangQR&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> A game,a show or a sing. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>zhangqr</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#copy"><span class="toc-text">copy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#official"><span class="toc-text">official</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#show"><span class="toc-text">show</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#thinking"><span class="toc-text">thinking</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#remaining"><span class="toc-text">remaining</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> A game,a show or a sing. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        pygame simple example
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-02-16 16:13:22</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#python" title="python">python</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#game" title="game">game</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="copy"><a href="#copy" class="headerlink" title="copy"></a>copy</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config.py 存放配置</span></span><br><span class="line"><span class="keyword">import</span> os,sys</span><br><span class="line">resource_path = os.path.join(os.path.dirname(__file__),<span class="string">'..'</span>,<span class="string">'data'</span>)</span><br><span class="line">fist_image = os.path.join(resource_path,<span class="string">'fist.bmp'</span>)</span><br><span class="line">whimp_image = os.path.join(resource_path,<span class="string">'nut.bmp'</span>)</span><br><span class="line"></span><br><span class="line">punch_sound = os.path.join(resource_path,<span class="string">'punch.wav'</span>)</span><br><span class="line">whiff_sound = os.path.join(resource_path,<span class="string">'whiff.wav'</span>)</span><br><span class="line"></span><br><span class="line">whimp_speed = <span class="number">8</span></span><br><span class="line">whimp_rotate = <span class="number">12</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># fist.py </span></span><br><span class="line"><span class="keyword">import</span> os,sys</span><br><span class="line"><span class="keyword">import</span> pygame</span><br><span class="line"><span class="keyword">import</span> config</span><br><span class="line"><span class="keyword">from</span> config <span class="keyword">import</span> fist_image</span><br><span class="line"><span class="keyword">from</span> pygame.locals <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> tool <span class="keyword">import</span> load_image</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fist</span><span class="params">(pygame.sprite.Sprite)</span>:</span></span><br><span class="line">    <span class="string">'''拳头类，可出击'''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        pygame.sprite.Sprite.__init__(self)</span><br><span class="line">        self.image , self.rect = load_image(fist_image,<span class="number">-1</span>)</span><br><span class="line">        self.punching = <span class="literal">False</span> </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">''' 重写父类的 update '''</span></span><br><span class="line">        mouse_pos = pygame.mouse.get_pos()</span><br><span class="line">        <span class="comment"># self.rect.midtop = mouse_pos</span></span><br><span class="line">        <span class="keyword">if</span> self.punching:</span><br><span class="line">            self.rect.midtop = ( mouse_pos[<span class="number">0</span>] + <span class="number">5</span> , mouse_pos[<span class="number">1</span>] + <span class="number">5</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.rect.midtop = mouse_pos</span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">punch</span><span class="params">(self,target)</span>:</span></span><br><span class="line">        <span class="string">''' 出击函数，检测是否与 target 产生碰撞'''</span></span><br><span class="line">        self.punching = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span>(self.rect.colliderect(target.rect)):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">unpunch</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">'''恢复'''</span></span><br><span class="line">        self.punching = <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># whimp.py</span></span><br><span class="line"><span class="keyword">import</span> os,sys</span><br><span class="line"><span class="keyword">import</span> pygame</span><br><span class="line"><span class="keyword">from</span> config <span class="keyword">import</span> whimp_image,whimp_rotate,whimp_speed</span><br><span class="line"><span class="keyword">from</span> pygame.locals <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> tool <span class="keyword">import</span> load_image</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Whimp</span><span class="params">(pygame.sprite.Sprite)</span>:</span></span><br><span class="line">    <span class="string">'''猴子类，不要问为什么图片是个坚果，就是可爱'''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        pygame.sprite.Sprite.__init__(self)</span><br><span class="line">        self.image ,self.rect = load_image(whimp_image,<span class="number">-1</span>)</span><br><span class="line">        self.origin = self.image</span><br><span class="line">        <span class="comment"># 设置初始位置</span></span><br><span class="line">        self.rect.midtop = (self.rect.width / <span class="number">2</span> , <span class="number">0</span>)</span><br><span class="line">        screen = pygame.display.get_surface()</span><br><span class="line">        self.right_limit = screen.get_rect().right - self.rect.width / <span class="number">2</span></span><br><span class="line">        self.left_limit = self.rect.width / <span class="number">2</span></span><br><span class="line">        self.angle = <span class="number">0</span></span><br><span class="line">        self.speed = whimp_speed</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">''' 重写父类的 update '''</span></span><br><span class="line">        <span class="keyword">if</span> self.angle:</span><br><span class="line">            self._spin()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self._walk()</span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_walk</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">''' 猴子跑步 '''</span></span><br><span class="line">        <span class="comment"># if not self.angle:</span></span><br><span class="line">        target_x = self.rect.centerx + self.speed</span><br><span class="line">        <span class="keyword">if</span> target_x &gt; self.right_limit <span class="keyword">or</span> target_x &lt; self.left_limit:</span><br><span class="line">            self.speed = -self.speed</span><br><span class="line">            self.image = pygame.transform.flip(self.image,<span class="number">-1</span>,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.rect.centerx = target_x</span><br><span class="line">                </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_spin</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">''' 猴子眩晕 '''</span></span><br><span class="line">        center = self.rect.center</span><br><span class="line">        self.angle += whimp_rotate</span><br><span class="line">        <span class="keyword">if</span> self.angle &gt;= <span class="number">360</span>:</span><br><span class="line">            self.angle = <span class="number">0</span></span><br><span class="line">            self.image = self.origin</span><br><span class="line">        self.image = pygame.transform.rotate(self.origin,self.angle)</span><br><span class="line">        self.rect = self.image.get_rect(center = center)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">punched</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">''' 被锤了，QAQ '''</span></span><br><span class="line">        self.angle = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tool.py </span></span><br><span class="line"><span class="keyword">import</span> os,sys</span><br><span class="line"><span class="keyword">import</span> pygame</span><br><span class="line"><span class="keyword">from</span> pygame.locals <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> pygame.compat <span class="keyword">import</span> geterror</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_image</span><span class="params">(name, colorkey=None)</span>:</span></span><br><span class="line">    fullname = name</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        image = pygame.image.load(fullname)</span><br><span class="line">    <span class="keyword">except</span> pygame.error <span class="keyword">as</span> message:</span><br><span class="line">        print(<span class="string">"Cannot load image:"</span>, fullname)</span><br><span class="line">        <span class="keyword">raise</span> SystemExit(message)</span><br><span class="line">    image = image.convert()</span><br><span class="line">    <span class="keyword">if</span> colorkey <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">if</span> colorkey == <span class="number">-1</span>:</span><br><span class="line">            colorkey = image.get_at((<span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">        image.set_colorkey(colorkey, RLEACCEL)</span><br><span class="line">    <span class="keyword">return</span> image, image.get_rect()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_sound</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">NoneSound</span>:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">play</span><span class="params">(self)</span>:</span></span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> pygame.mixer <span class="keyword">or</span> <span class="keyword">not</span> pygame.mixer.get_init():</span><br><span class="line">        <span class="keyword">return</span> NoneSound()</span><br><span class="line">    fullname = name</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        sound = pygame.mixer.Sound(fullname)</span><br><span class="line">    <span class="keyword">except</span> pygame.error:</span><br><span class="line">        print(<span class="string">"Cannot load sound: %s"</span> % fullname)</span><br><span class="line">        <span class="keyword">raise</span> SystemExit(str(geterror()))</span><br><span class="line">    <span class="keyword">return</span> sound</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># main.py</span></span><br><span class="line"><span class="keyword">import</span> os,sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> pygame</span><br><span class="line"><span class="keyword">from</span> whimp <span class="keyword">import</span> Whimp</span><br><span class="line"><span class="keyword">from</span> fist <span class="keyword">import</span> Fist</span><br><span class="line"><span class="keyword">from</span> pygame.locals <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> tool <span class="keyword">import</span> load_sound</span><br><span class="line"><span class="keyword">from</span> config <span class="keyword">import</span> whiff_sound,punch_sound</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> pygame.font:</span><br><span class="line">        print(<span class="string">'sorry, this game no font'</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> pygame.mixer.Sound:</span><br><span class="line">        print(<span class="string">'sorry,this game no sound'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 初始化背景，文字等</span></span><br><span class="line">    pygame.init()</span><br><span class="line">    screen = pygame.display.set_mode((<span class="number">400</span>,<span class="number">80</span>))</span><br><span class="line">    bg = pygame.Surface(screen.get_size())</span><br><span class="line">    bg = bg.convert()</span><br><span class="line">    bg.fill((<span class="number">250</span>,<span class="number">250</span>,<span class="number">250</span>))</span><br><span class="line">    pygame.mouse.set_visible(<span class="number">0</span>)</span><br><span class="line">    <span class="comment"># screen.blit(bg,(0,0)) 要从前往后画</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> pygame.font:</span><br><span class="line">        text = pygame.font.Font(<span class="literal">None</span>,<span class="number">32</span>).render(<span class="string">'Hit The Nut And Win $$$'</span>,<span class="number">1</span>,(<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>))</span><br><span class="line">        bg.blit(text,(screen.get_width() / <span class="number">2</span> - text.get_width() /<span class="number">2</span>,<span class="number">30</span>))</span><br><span class="line">    screen.blit(bg,(<span class="number">0</span>,<span class="number">0</span>))</span><br><span class="line">    pygame.display.flip()</span><br><span class="line">    print(text.get_rect())</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 准备资源，精灵，音效等</span></span><br><span class="line">    clock = pygame.time.Clock()</span><br><span class="line">    whimp = Whimp()</span><br><span class="line">    fist = Fist()</span><br><span class="line">    punch_s = load_sound(punch_sound)</span><br><span class="line">    whiff_s = load_sound(whiff_sound)</span><br><span class="line"></span><br><span class="line">    allsprite = pygame.sprite.RenderPlain((whimp,fist))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 主循环</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        clock.tick(<span class="number">60</span>)</span><br><span class="line">        <span class="keyword">for</span> event <span class="keyword">in</span> pygame.event.get():</span><br><span class="line">            <span class="keyword">if</span> event.type == pygame.QUIT <span class="keyword">or</span> event.type == pygame.K_ESCAPE:</span><br><span class="line">                exit()</span><br><span class="line">            <span class="keyword">if</span> event.type == pygame.MOUSEBUTTONDOWN:</span><br><span class="line">                <span class="keyword">if</span> fist.punch(whimp):</span><br><span class="line">                    whimp.punched()</span><br><span class="line">                    punch_s.play()</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    whiff_s.play()</span><br><span class="line">            <span class="keyword">if</span> event.type == pygame.MOUSEBUTTONUP:</span><br><span class="line">                fist.unpunch()</span><br><span class="line">        </span><br><span class="line">        allsprite.update()</span><br><span class="line"></span><br><span class="line">        screen.blit(bg,(<span class="number">0</span>,<span class="number">0</span>))</span><br><span class="line">        allsprite.draw(screen)</span><br><span class="line">        pygame.display.flip()</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<h1 id="official"><a href="#official" class="headerlink" title="official"></a>official</h1><p><a href="https://www.pygame.org/docs/tut/chimp.py.html" target="_blank" rel="noopener">chimp</a></p>
+<h1 id="show"><a href="#show" class="headerlink" title="show"></a>show</h1><p><img src="/img/fist_and_chimp.gif" alt></p>
+<h1 id="thinking"><a href="#thinking" class="headerlink" title="thinking"></a>thinking</h1><p>1、分清楚每一层需要干什么，比如一开始企图在 chimp 的 update 里写 event。。。但实际上应该是先获得当前帧的所有 event，然后再更新数据，最后在 update(更新渲染)<br>2、如果一时间不能接受那么多函数的话，可以用自己的方式代替，比如 move_ip 可以写成 x=xx, y=yy</p>
+<h1 id="remaining"><a href="#remaining" class="headerlink" title="remaining"></a>remaining</h1><p><code>pygame.transform.rotate()</code> 每次变化都会有锯齿，然后如果一直用变换后的去变换，不到 10 次就会内存溢出，所以代码中一直是使用的原始图像变换</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/烂醉花间Dlitf">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZhangQR">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
