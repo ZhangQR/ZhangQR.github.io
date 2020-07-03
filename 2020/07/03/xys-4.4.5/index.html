@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Record my life and progress(maybe)">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        序列化/反序列化监听 - ZhangQR的博客 | ZhangQR&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> A game,a show or a sing. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>zhangqr</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#实现字典的序列化"><span class="toc-text">实现字典的序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#运行结果"><span class="toc-text">运行结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#感想"><span class="toc-text">感想</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#命名规范"><span class="toc-text">命名规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码规范"><span class="toc-text">代码规范</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> A game,a show or a sing. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        序列化/反序列化监听
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-07-03 23:35:02</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Unity" title="Unity">Unity</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#宣雨松" title="宣雨松">宣雨松</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="实现字典的序列化"><a href="#实现字典的序列化" class="headerlink" title="实现字典的序列化"></a>实现字典的序列化</h1><h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p><img src="/img/picture4-18.png" alt><br>点一下 “+” Button可以新增一个键值对，可以在 Inspector 面板设置键值的值，但不知道为什么 key 到输入框的距离不可控，只有将 inspector 面板变大才能完全看到，而且也没有禁用组件的勾选框了。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c"><figcaption><span>Sharp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Script_04_11.cs 文件</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR</span></span><br><span class="line"><span class="keyword">using</span> UnityEditor;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 继承 ISerializationCallbackReceiver 接口，实现 OnBeforeSerialize 和 OnAfterDeserialize</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Script_04_11</span> :</span> MonoBehaviour,ISerializationCallbackReceiver</span><br><span class="line">&#123;</span><br><span class="line">    [SerializeField]</span><br><span class="line">    <span class="comment">// [HideInInspector] 加了SerializeField会显示在Inspector面板上，除非再加上一个 HideInInspector</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;<span class="built_in">string</span>&gt; key_list = <span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line">    [SerializeField]</span><br><span class="line">    <span class="keyword">private</span> List&lt;Sprite&gt; value_list = <span class="keyword">new</span> List&lt;Sprite&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这里是 public 是因为下面要用 (target as Script04_11).m_spriteDic，这里最好也不要用 m_ 命名。</span></span><br><span class="line">    <span class="keyword">public</span> Dictionary&lt;<span class="built_in">string</span>, Sprite&gt; m_spriteDic = <span class="keyword">new</span> Dictionary&lt;<span class="built_in">string</span>, Sprite&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="meta">#region ISerializationCallbackReceiver implementation</span></span><br><span class="line">    <span class="comment">// 序列化之前将字典里的内容传递到两个列表</span></span><br><span class="line">    <span class="keyword">void</span> ISerializationCallbackReceiver.OnBeforeSerialize()</span><br><span class="line">    <span class="comment">// public void OnBeforeSerialize()</span></span><br><span class="line">    &#123;</span><br><span class="line">        key_list.Clear();</span><br><span class="line">        value_list.Clear();</span><br><span class="line">        foreach(KeyValuePair&lt;<span class="built_in">string</span>,Sprite&gt; pair in m_spriteDic)</span><br><span class="line">        &#123;</span><br><span class="line">            key_list.Add(pair.Key);</span><br><span class="line">            value_list.Add(pair.Value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//反序列化之后将两个列表里的内容传递到词典里</span></span><br><span class="line">    <span class="keyword">void</span> ISerializationCallbackReceiver.OnAfterDeserialize()</span><br><span class="line">    <span class="comment">// public void OnAfterDeserialize()</span></span><br><span class="line">    &#123;</span><br><span class="line">        m_spriteDic.Clear();</span><br><span class="line">        <span class="keyword">int</span> size = key_list.Count;</span><br><span class="line">        <span class="keyword">if</span> (size != value_list.Count)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.LogError(<span class="string">"反序列化时键值对数量不匹配"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            m_spriteDic[key_list[i]] = value_list[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">#endregion</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR</span></span><br><span class="line">[CustomEditor(typeof(Script_04_11))]</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Script04_11_editor</span> :</span> Editor</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> override <span class="keyword">void</span> <span class="title">OnInspectorGUI</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// base.OnInspectorGUI();</span></span><br><span class="line">        serializedObject.Update();</span><br><span class="line">        SerializedProperty keyProperty = serializedObject.FindProperty(<span class="string">"key_list"</span>);</span><br><span class="line">        SerializedProperty valueProperty = serializedObject.FindProperty(<span class="string">"value_list"</span>);</span><br><span class="line">        GUILayout.BeginVertical();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ? 是因为反序列化已经完成了所以不需要再次判断键值列表数量是否相等？</span></span><br><span class="line">        <span class="keyword">int</span> size = keyProperty.arraySize;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            GUILayout.BeginHorizontal();</span><br><span class="line">            <span class="comment">//x 此时 keyProperty 是一个数组，要先获取每个 string 元素</span></span><br><span class="line">            <span class="comment">//keyProperty.stringValue = EditorGUILayout.TextField("主键", keyProperty.GetArrayElementAtIndex(i).stringValue);</span></span><br><span class="line">            <span class="comment">//valueProperty.objectReferenceValue = EditorGUILayout.ObjectField("图片",valueProperty.GetArrayElementAtIndex(i).objectReferenceValue, typeof(Sprite), false);</span></span><br><span class="line"></span><br><span class="line">            SerializedProperty key = keyProperty.GetArrayElementAtIndex(i);</span><br><span class="line">            SerializedProperty value = valueProperty.GetArrayElementAtIndex(i);</span><br><span class="line">            key.stringValue = EditorGUILayout.TextField(<span class="string">"key"</span>, key.stringValue);</span><br><span class="line">            value.objectReferenceValue = EditorGUILayout.ObjectField(<span class="string">"value"</span>, value.objectReferenceValue, typeof(Sprite), <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">            GUILayout.EndHorizontal();        </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//GUILayout.EndVertical();</span></span><br><span class="line">        <span class="comment">//GUILayout.BeginHorizontal();</span></span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">"+"</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            (target as Script_04_11).m_spriteDic[size.ToString()] = null;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//GUILayout.EndHorizontal();</span></span><br><span class="line">        GUILayout.EndVertical();</span><br><span class="line">        serializedObject.ApplyModifiedProperties();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><h3 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h3><p>雨松大大用的命名规范貌似不是Pascal(BackColor),Camel(backColor)或者匈牙利命名法(m_bFlag)。所以打算遇到一个总结一下：<br>私有成员变量： m_Keys<br>公有成员变量: spriteDic</p>
+<h3 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h3><p>1、在关于编辑器的地方使用 <code>#if UNITY_EDITOR</code> and <code>#endif</code> ，比如在<code>using UnityEditor;</code> 和拓展编辑器的部分。<br>2、合理使用 <code>#region xxxxx</code> and <code>#endregion</code>,比如在接口的实现函数时。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/烂醉花间Dlitf">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZhangQR">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
