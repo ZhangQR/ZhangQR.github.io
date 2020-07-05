@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Record my life and progress(maybe)">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        ScriptableObject - ZhangQR的博客 | ZhangQR&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> A game,a show or a sing. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>zhangqr</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ScriptableObject-的使用"><span class="toc-text">ScriptableObject 的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#运行结果"><span class="toc-text">运行结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#感想"><span class="toc-text">感想</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#命名规范"><span class="toc-text">命名规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于-“类对象资源”"><span class="toc-text">关于 “类对象资源”</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> A game,a show or a sing. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        ScriptableObject
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-07-05 10:58:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Unity" title="Unity">Unity</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#宣雨松" title="宣雨松">宣雨松</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="ScriptableObject-的使用"><a href="#ScriptableObject-的使用" class="headerlink" title="ScriptableObject 的使用"></a>ScriptableObject 的使用</h1><h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p>可以在 Aseets/Create 创建 “类对象资源”，也可以在 Assets 面板的 “+” 中创建。如果需要在游戏运行时加载那么可以放到 Resources 文件夹中。<br><img src="/img/xys_4.4.6_1.png" alt><br>创建完成后，生成 “New Script_04_12.asset”，并且点击的话会在  Inspector 面板显示如下。可以看到显示了我们在继承了 ScriptableObject 的类中定义的成员变量( 代码见 Script_04_12.cs )。并且可以在 Inspector 面板修改对应的值。<br><img src="/img/xys_4.4.6_2.png" alt><br>上述方法是点击一下 Aseets/Create/Script_04_12 创建一个空的 “类对象资源” ，然后需要自己手动在 Inspector面板赋值，这样的话需要大批量的生成这种资源就很麻烦，所以可以在代码中将赋值好，然后只点击一个按钮就可以生成赋值好的资源。代码见 Script_04_12_create.cs<br><img src="/img/xys_4.4.6_4.png" alt></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c"><figcaption><span>Sharp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：Script_04_12.cs</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line">[CreateAssetMenu]</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Script_04_12</span> :</span> ScriptableObject</span><br><span class="line">&#123;</span><br><span class="line">    [SerializeField]</span><br><span class="line">    <span class="keyword">public</span> List&lt;PlayInfo&gt; m_playInfo;</span><br><span class="line"></span><br><span class="line">    [System.Serializable]</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PlayInfo</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">string</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><figcaption><span>Sharp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：Script_04_12_main.cs</span></span><br><span class="line"><span class="comment">// 可以在运行时加载 “类对象资源”，详情如图。</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Script_04_12_main</span> :</span> MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnGUI</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">"加载Script_04_12"</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// New Script_04_12 是通过[CreateAssetMenu],然后在Asset右击新建的。</span></span><br><span class="line">            <span class="comment">// 要将 New Script_04_12 放到资源的 Resources 文件夹下面</span></span><br><span class="line">            Script_04_12 script = Resources.Load&lt;Script_04_12&gt;(<span class="string">"New Script_04_12"</span>);</span><br><span class="line">            Debug.LogFormat(<span class="string">"加载的 script 第一个元素的 id 为 &#123;0&#125;，name 为 &#123;1&#125;"</span>, script.m_playInfo[<span class="number">0</span>].id, script.m_playInfo[<span class="number">0</span>].name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/xys_4.4.6_3.png" alt></p>
+<figure class="highlight c"><figcaption><span>Sharp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名: Script_04_12_create.cs</span></span><br><span class="line"><span class="comment">// 要放在 Editor 文件夹下。Editor 文件夹位置和数量不限</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEditor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Script_04_12_create</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    [MenuItem(<span class="string">"Assets/Create script_04_12"</span>)]</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Create</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Script_04_12 script = ScriptableObject.CreateInstance&lt;Script_04_12&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 填充数据</span></span><br><span class="line">        script.m_playInfo = <span class="keyword">new</span> List&lt;Script_04_12.PlayInfo&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//Script_04_12.PlayInfo info = new Script_04_12.PlayInfo();</span></span><br><span class="line">        <span class="comment">//info.id = 10086;</span></span><br><span class="line">        <span class="comment">//info.name = "张思";</span></span><br><span class="line">        <span class="comment">//script.m_playInfo.Add(info);</span></span><br><span class="line">        <span class="comment">//上面可化简为</span></span><br><span class="line">        script.m_playInfo.Add(<span class="keyword">new</span> Script_04_12.PlayInfo() &#123; id = <span class="number">10086</span>, name = <span class="string">"张思"</span> &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 储存数据</span></span><br><span class="line">        AssetDatabase.CreateAsset(script, <span class="string">"Assets/Resources/Create Script_04_12.asset"</span>);</span><br><span class="line">        AssetDatabase.SaveAssets();</span><br><span class="line">        AssetDatabase.Refresh();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><h3 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h3><p>雨松大大用的命名规范有点让人迷惑，一开始我以为它是将私有成员变量都使用 <code>m_</code> 为前缀，然后使用 Pascal 大小写，但是<br><code>[SerializeField] public List&lt;PlayInfo&gt; m_playInfo;</code> 就难以解释。</p>
+<h3 id="关于-“类对象资源”"><a href="#关于-“类对象资源”" class="headerlink" title="关于 “类对象资源”"></a>关于 “类对象资源”</h3><p>这个名字是我自己取的哈哈，因为很好理解，就是类的一个实例化对象被以资源的形式存储。一般有三种操作方式：</p>
+<ul>
+<li>在运行时使用 <code>Resources.load&lt;&gt;()</code> 来加载并使用</li>
+<li>使用在继承了 ScriptableObject 的类上用 <code>[CreateAssetMenu]</code> 来修饰，但这样创建出来的 “类对象资源” 是空的，需要自己在 Inspector 面板上再赋值</li>
+<li>使用 <code>ScriptableObject.CreateInstance&lt;&gt;()</code>、<code>AssetDatabase.CreateAssets()</code>、<code>AssetDatabase.SaveAssets()</code>、<code>AssetDatabase.Refresh()</code> 组合拳，代码中填充好将要保存的 “类对象资源” 的数值之后再保存到 Assets 里面。</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/烂醉花间Dlitf">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZhangQR">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
