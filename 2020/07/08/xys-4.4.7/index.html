@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Record my life and progress(maybe)">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        脚本的 Attributes 特性 - ZhangQR的博客 | ZhangQR&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> A game,a show or a sing. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>zhangqr</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#脚本的-Attributes-特性"><span class="toc-text">脚本的 Attributes 特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#运行结果"><span class="toc-text">运行结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RangeAttribute"><span class="toc-text">RangeAttribute</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> A game,a show or a sing. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        脚本的 Attributes 特性
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-07-08 17:38:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Unity" title="Unity">Unity</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#宣雨松" title="宣雨松">宣雨松</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="脚本的-Attributes-特性"><a href="#脚本的-Attributes-特性" class="headerlink" title="脚本的 Attributes 特性"></a>脚本的 Attributes 特性</h1><h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p>只需要声明变量的时候加上 <code>[RangeIntAttribution(1.0f,100.0f)]</code> 就可以设置成员变量的范围了，并且在 Inspector 面板上如下显示：<br><img src="/img/xys_4.4.7.png" alt></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：Script_04_13</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Script_04_13</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;   <span class="comment">// 使用 Range 可以直接创建一个有范围的 Int 或者 Float 值，并且在 Inspector 中显示一个滑动条</span></span><br><span class="line">    <span class="comment">// [Range(1, 100)]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里演示自定义 Attribution,为了实验官网的例子，都改成了 float 类型</span></span><br><span class="line">    [<span class="meta">RangeIntAttribution(1.0f,100.0f)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">float</span> rangeFloat;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">RangeIntAttribution(10, 60)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>  rangeInt;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">RangeIntAttribution('a','z')</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> rangeInt2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：RangeIntAttribution</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR</span></span><br><span class="line"><span class="keyword">using</span> UnityEditor;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">RangeIntAttribution</span> : <span class="title">PropertyAttribute</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// readonly 值类型只可在声明或者构造函数中改变值。</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">readonly</span> <span class="keyword">float</span> minValue;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">readonly</span> <span class="keyword">float</span> maxValue;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RangeIntAttribution</span>(<span class="params"><span class="keyword">float</span> minValue, <span class="keyword">float</span> maxValue</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">this</span>.minValue = minValue;</span><br><span class="line">        <span class="keyword">this</span>.maxValue = maxValue;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR</span></span><br><span class="line">[<span class="meta">CustomPropertyDrawer(typeof(RangeIntAttribution))</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">RangeIntDrawer</span>:<span class="title">PropertyDrawer</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">float</span> <span class="title">GetPropertyHeight</span>(<span class="params">SerializedProperty property, GUIContent label</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">90</span>; <span class="comment">// 设置面板高度 </span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params">Rect position, SerializedProperty property, GUIContent label</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// 错的，内含 attribute，不过要向下转型</span></span><br><span class="line">        <span class="comment">// PropertyAttribute attribute = new RangeIntAttribution(1, 100);</span></span><br><span class="line"></span><br><span class="line">        RangeIntAttribution attribute = <span class="keyword">this</span>.attribute <span class="keyword">as</span> RangeIntAttribution;</span><br><span class="line">        property.floatValue = Mathf.Clamp(property.floatValue, attribute.minValue, attribute.maxValue);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 可以使用 positopn 的前三个值，高度要自己估算一下</span></span><br><span class="line">        EditorGUI.HelpBox(<span class="keyword">new</span> Rect(position.x,position.y,position.width,<span class="number">35</span>), <span class="keyword">string</span>.Format(</span><br><span class="line">            <span class="string">"请输入一个范围从&#123;0&#125;到&#123;1&#125;的整数"</span>,attribute.minValue, attribute.maxValue), MessageType.Info);</span><br><span class="line">        EditorGUI.PropertyField(<span class="keyword">new</span> Rect(position.x, position.y + <span class="number">35</span>, position.width, <span class="number">20</span>), property, label);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 再按照官网上的画一个滑动条 https://docs.unity3d.com/ScriptReference/PropertyDrawer.html</span></span><br><span class="line">        <span class="keyword">if</span>(property.propertyType == SerializedPropertyType.Float)</span><br><span class="line">        &#123;</span><br><span class="line">            EditorGUI.Slider(<span class="keyword">new</span> Rect(position.x, position.y + <span class="number">65</span>, position.width, <span class="number">20</span>),</span><br><span class="line">                property,attribute.minValue, attribute.maxValue);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (property.propertyType == SerializedPropertyType.Integer)</span><br><span class="line">        &#123;</span><br><span class="line">            EditorGUI.IntSlider(<span class="keyword">new</span> Rect(position.x, position.y + <span class="number">65</span>, position.width, <span class="number">20</span>), property,</span><br><span class="line">                Convert.ToInt32(attribute.minValue), Convert.ToInt32(attribute.maxValue));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            EditorGUI.LabelField(<span class="keyword">new</span> Rect(position.x, position.y + <span class="number">65</span>, position.width, <span class="number">20</span>),label.text,</span><br><span class="line">                <span class="string">"use Range with int or float"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h1 id="RangeAttribute"><a href="#RangeAttribute" class="headerlink" title="RangeAttribute"></a>RangeAttribute</h1><p>上述实现了一个有范围的变量，但其实这个功能在 UnityEngine 里面已经有了，可见<a href="https://docs.unity3d.com/ScriptReference/RangeAttribute.html" target="_blank" rel="noopener">RangeAttribute</a>，这个主要是要训练一下自定义标签，可以看到其实这个标签调用的应该是 xxxAttribute 类的构造函数。<br>Unity 里面自带了很多标签，API 可以在 UnityEngine.Attributes 和 UnityEditor.Attributes 中找到，</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/烂醉花间Dlitf">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZhangQR">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
