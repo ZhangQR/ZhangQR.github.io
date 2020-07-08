@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Record my life and progress(maybe)">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        传参与readonly - ZhangQR的博客 | ZhangQR&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> A game,a show or a sing. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>zhangqr</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#传参"><span class="toc-text">传参</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#readonly-与-ref"><span class="toc-text">readonly 与 ref</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> A game,a show or a sing. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        传参与readonly
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-07-08 10:48:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#c-sharp" title="c-sharp">c-sharp</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h1><p>c# 和 c++ 感觉很不同的一点就是关于 new 的使用，在 c++ 中，new 只是动态分配一块内存，比如 <code>Person p(10,&quot;zhangqr&quot;);</code> 和 <code>Person *p = new Perspn(10,&quot;zhangqr&quot;);</code> 前者 p 就是一个实体，后者 p 只是一个指向实体的指针。而在 c# 中，<code>Person p;</code> 表示申明了一个指向 null 的 Person 类型指针，想要在申明时就初始化需要使用 <code>Person p = new Person(10,&quot;zhangqr&quot;);</code>，这里的 p 本质上是一个指针。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">csharpTest</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Product</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> constructTimes = <span class="number">0</span>;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Product</span>(<span class="params"><span class="keyword">string</span> name, <span class="keyword">int</span> newID</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            ItemName = name;</span><br><span class="line">            ItemID = newID;</span><br><span class="line">            Console.WriteLine(<span class="string">"product 被构造&#123;0&#125;次, name:&#123;1&#125;,id:&#123;2&#125;"</span>, ++constructTimes,<span class="keyword">this</span>.ItemName,<span class="keyword">this</span>.ItemID);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Product</span>(<span class="params"> Product product</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">"product 拷贝构造函数被调用一次"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">string</span> ItemName &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> ItemID &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// This method displays the following output:</span></span><br><span class="line">    <span class="comment">// Original values in Main.  Name: Fasteners, ID: 54321</span></span><br><span class="line">    <span class="comment">// Back in Main.  Name: Stapler, ID: 12345</span></span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ChangeByReference</span>(<span class="params"><span class="comment">/*ref*/</span> Product itemRef</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="comment">// Change the address that is stored in the itemRef parameter.</span></span><br><span class="line">            itemRef = <span class="keyword">new</span> Product(<span class="string">"Stapler"</span>, <span class="number">99999</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// You can change the value of one of the properties of</span></span><br><span class="line">            <span class="comment">// itemRef. The change happens to item in Main as well.</span></span><br><span class="line">            itemRef.ItemID = <span class="number">12345</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ModifyProductsByReference</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="comment">// Declare an instance of Product and display its initial values.</span></span><br><span class="line">            Product item = <span class="keyword">new</span> Product(<span class="string">"Fasteners"</span>, <span class="number">54321</span>);</span><br><span class="line">            System.Console.WriteLine(<span class="string">"Original values in Main.  Name: &#123;0&#125;, ID: &#123;1&#125;\n"</span>,</span><br><span class="line">                item.ItemName, item.ItemID);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Pass the product instance to ChangeByReference.</span></span><br><span class="line">            ChangeByReference(<span class="comment">/*ref*/</span> item);</span><br><span class="line">            System.Console.WriteLine(<span class="string">"Back in Main.  Name: &#123;0&#125;, ID: &#123;1&#125;\n"</span>,</span><br><span class="line">                item.ItemName, item.ItemID);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Product item2 = new Product(item);</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            ModifyProductsByReference();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果:</p>
+<blockquote>
+<p>product 被构造1次, name:Fasteners,id:54321<br>Original values in Main.  Name: Fasteners, ID: 54321</p>
+<p>product 被构造2次, name:Stapler,id:99999<br>Back in Main.  Name: Fasteners, ID: 54321</p>
+</blockquote>
+<p>解释：<br><img src="/img/paramTransfer1.png" alt><br>在函数传递的时候拷贝构造函数也没有被调用，这一点也跟 c++ 不一样，但理解了其实传递的是指针之后就会明白，其实还是一样的，拷贝构造是在用一个实例创建另一个实例的时候会调用，但其实从图中可以看出来从头到尾只有一个实例，增加的也只是指针而已。</p>
+<p>如果将 <code>itemRef = new Product(&quot;Stapler&quot;, 99999);</code>注释掉的话，运行结果如下，这个从图中也很好理解，最后就是两个指针指向同一个实例。</p>
+<blockquote>
+<p>product 被构造1次, name:Fasteners,id:54321<br>Original values in Main.  Name: Fasteners, ID: 54321</p>
+<p>Back in Main.  Name: Fasteners, ID: 12345</p>
+</blockquote>
+<p>将两个 ref 的注释去掉之后，运行结果为：</p>
+<blockquote>
+<p>product 被构造1次, name:Fasteners,id:54321<br>Original values in Main.  Name: Fasteners, ID: 54321</p>
+<p>product 被构造2次, name:Stapler,id:99999<br>Back in Main.  Name: Stapler, ID: 12345</p>
+</blockquote>
+<p>解释：<br><img src="/img/paramTransfer2.png" alt><br>当传参的时候申明了 ref ，我是将其理解成 c++ 的引用，也操作的是同一个指针，但是有两个不同的名字。</p>
+<p>以上并未加验证，本来是想通过 <code>unsafe</code> 来取地址验证一下，但是 <code>unsafe</code> 需要在声明时就加上 * ，也就是像 c++ 的写法一样，而我是想用 c# 的写法来取到地址，所以暂时没找到验证方法，因为目前猜测都合理，所以暂且这么理解。</p>
+<h1 id="readonly-与-ref"><a href="#readonly-与-ref" class="headerlink" title="readonly 与 ref"></a>readonly 与 ref</h1><p>先上实验代码</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ReadonlyTest</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span>(GUILayout.Button(<span class="string">"测试 readonly "</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 使用声明 readonly 成员变量时赋的值</span></span><br><span class="line">            ReadOnlyData data = <span class="keyword">new</span> ReadOnlyData();</span><br><span class="line">            Debug.LogFormat(<span class="string">"使用申明时的赋值，value types:&#123;0&#125;,reference types:a=&#123;1&#125;,b=&#123;2&#125;"</span>, data.age,data.refType.a,data.refType.b);</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 使用构造函数给 readonly 成员变量赋值</span></span><br><span class="line">            ReadOnlyDataB dataB = <span class="keyword">new</span> ReadOnlyDataB &#123; a = <span class="number">15</span>, b = <span class="number">25</span> &#125;;</span><br><span class="line">            data = <span class="keyword">new</span> ReadOnlyData(<span class="number">15</span>, <span class="keyword">ref</span> dataB);</span><br><span class="line">            Debug.LogFormat(<span class="string">"使用构造函数中的赋值，value types:&#123;0&#125;,reference types:a=&#123;1&#125;,b=&#123;2&#125;"</span>, data.age,data.refType.a, data.refType.b);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 改变局部变量的值</span></span><br><span class="line">            Debug.Log(<span class="string">"局部变量是否与 reference type 相同（Equals函数）"</span>+ dataB.Equals(data.refType));</span><br><span class="line">            dataB.a = <span class="number">25</span>;</span><br><span class="line">            dataB.b = <span class="number">35</span>;</span><br><span class="line">            Debug.LogFormat(<span class="string">"改变了局部变量所指的对象，value types:&#123;0&#125;,reference types:a=&#123;1&#125;,b=&#123;2&#125;，局部变量:a=&#123;3&#125;,b=&#123;4&#125;"</span>, </span><br><span class="line">                            data.age, data.refType.a, data.refType.b,dataB.a,dataB.b);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 改变 reference type 所指的值</span></span><br><span class="line">            Debug.Log(<span class="string">"局部变量是否与 reference type 相同（Equals函数）"</span> + dataB.Equals(data.refType));</span><br><span class="line">            data.refType.a = <span class="number">35</span>;</span><br><span class="line">            data.refType.b = <span class="number">45</span>;</span><br><span class="line">            Debug.LogFormat(<span class="string">"改变 reference type 所指的对象，value types:&#123;0&#125;,reference types:a=&#123;1&#125;,b=&#123;2&#125;，局部变量:a=&#123;3&#125;,b=&#123;4&#125;"</span>,</span><br><span class="line">                            data.age, data.refType.a, data.refType.b, dataB.a, dataB.b);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 改变局部变量的指向</span></span><br><span class="line">            dataB = <span class="keyword">new</span> ReadOnlyDataB &#123; a = <span class="number">45</span>, b = <span class="number">55</span> &#125;;</span><br><span class="line">            Debug.Log(<span class="string">"改变了局部变量的指向后，是否还与 reference type 相同（Equals函数）"</span> + dataB.Equals(data.refType));</span><br><span class="line">            Debug.LogFormat(<span class="string">"改变了 readonly reference type 所指的对象，value types:&#123;0&#125;,reference types:a=&#123;1&#125;,b=&#123;2&#125;"</span>, data.age, data.refType.a, data.refType.b);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// data.ChangeReferenceValue();</span></span><br><span class="line">            <span class="comment">// Debug.Log("类内改变 reference type 之后，是否还与 reference type 相同（Equals函数）" + dataB.Equals(data.refType));</span></span><br><span class="line">            <span class="comment">// Debug.LogFormat("类内改变 reference type 之后，value types:&#123;0&#125;,reference types:a=&#123;1&#125;,b=&#123;2&#125;，局部变量:a=&#123;3&#125;,b=&#123;4&#125;",</span></span><br><span class="line">                            data.age, data.refType.a, data.refType.b, dataB.a, dataB.b);</span><br><span class="line">            <span class="comment">// data.refType = new ReadOnlyDataB &#123; a = 45, b = 55 &#125;;// 无法对只读字段进行赋值，初始化和构造函数除外。</span></span><br><span class="line">            <span class="comment">// data1.age = 20; // 无法对只读字段进行赋值，初始化和构造函数除外。</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ReadOnlyData</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// readonly 变量直接在申明的时候赋值。</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">readonly</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// reference types 用 readonly 修饰</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">readonly</span> ReadOnlyDataB refType = <span class="keyword">new</span> ReadOnlyDataB &#123; a = <span class="number">10</span>, b = <span class="number">20</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ReadOnlyData</span>(<span class="params"><span class="keyword">int</span> age,<span class="keyword">ref</span> ReadOnlyDataB refType</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age; <span class="comment">// 可以， readonly 变量可以在构造函数中赋值。</span></span><br><span class="line">        <span class="keyword">this</span>.refType = refType;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ReadOnlyData</span>(<span class="params"></span>)<span class="comment">// :this(10,new ReadOnlyDataB &#123; a=10,b=20&#125;)</span></span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ChangeAge</span>(<span class="params"><span class="keyword">int</span> age</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// this.age = age; // 错误，除了申明和构造函数中不能对 readonly 赋值</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ChangeReferenceValue</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// this.refType = new ReadOnlyDataB &#123; a = 45, b = 55 &#125;;// 错误，除了申明和构造函数中不能对 readonly 赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ReadOnlyDataB</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> a;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果为：</p>
+<blockquote>
+<ul>
+<li>使用声明时的赋值，value types:10,reference types:a=10,b=20</li>
+<li>使用构造函数中的赋值，value types:15,reference types:a=15,b=25</li>
+<li>局部变量是否与 reference type 相同（Equals函数）True</li>
+<li>改变了局部变量所指的对象，value types:15,reference types:a=25,b=35，局部变量:a=25,b=35</li>
+<li>局部变量是否与 reference type 相同（Equals函数）True</li>
+<li>改变 reference type 所指的对象，value types:15,reference types:a=35,b=45，局部变量:a=35,b=45</li>
+<li>改变了局部变量的指向后，是否还与 reference type 相同（Equals函数）False</li>
+<li>改变了局部变量的指向后，value types:15,reference types:a=35,b=45，局部变量:a=45,b=55</li>
+</ul>
+</blockquote>
+<p>上面结果都是合理的，然后我在传参的时候将引用类型设置为了 ref，具体是：</p>
+<ul>
+<li><code>data = new ReadOnlyData(15, dataB);</code> 改为 <code>data = new ReadOnlyData(15, ref dataB);</code></li>
+<li><code>public readonly ReadOnlyDataB refType;</code> 改为 <code>public readonly ReadOnlyDataB refType = new ReadOnlyDataB { a = 10, b = 20 };</code></li>
+<li><code>public ReadOnlyData() :this(10,new ReadOnlyDataB { a=10,b=20})</code> 改为 <code>public ReadOnlyData() // :this(10,new ReadOnlyDataB { a=10,b=20})</code></li>
+<li><code>public ReadOnlyData(int age,ReadOnlyDataB refType)</code> 改为 <code>public ReadOnlyData(int age,ref ReadOnlyDataB refType)</code><br>按我的设想，此时 <code>成员变量 refType</code>、<code>ReadOnlyData 的二参 refType</code> 和 <code>局部变量data</code> 应该都是同一个指针，只是有不同的别名而已，所以在 <code>dataB = new ReadOnlyDataB { a = 45, b = 55 };</code> 之后，三者所指向的实例应该是一样的，结果并不是，运行结果是跟一次完全一样的，在梳理了 ref 的用法之后才惊觉 <code>ReadOnlyData 的二参 refType</code> 和 <code>局部变量data</code> 是同一个指针，但 <code>成员变量 refType</code> 并不是，因为他是直接用赋值符号得到的。验证如下：<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ReadonlyTest</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span>(GUILayout.Button(<span class="string">"测试 readonly "</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 使用声明 readonly 成员变量时赋的值</span></span><br><span class="line">            ReadOnlyData data = <span class="keyword">new</span> ReadOnlyData();</span><br><span class="line">            Debug.LogFormat(<span class="string">"使用申明时的赋值，value types:&#123;0&#125;,reference types:a=&#123;1&#125;,b=&#123;2&#125;"</span>, data.age,data.refType.a,data.refType.b);</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 使用构造函数给 readonly 成员变量赋值</span></span><br><span class="line">            ReadOnlyDataB dataB = <span class="keyword">new</span> ReadOnlyDataB &#123; a = <span class="number">15</span>, b = <span class="number">25</span> &#125;;</span><br><span class="line">            data = <span class="keyword">new</span> ReadOnlyData(<span class="number">15</span>, <span class="keyword">ref</span> dataB);</span><br><span class="line">            Debug.LogFormat(<span class="string">"使用构造函数中的赋值，value types:&#123;0&#125;,reference types:a=&#123;1&#125;,b=&#123;2&#125;"</span>, data.age,data.refType.a, data.refType.b);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 改变局部变量的值</span></span><br><span class="line">            <span class="comment">//Debug.Log("局部变量是否与 reference type 相同（Equals函数）"+ dataB.Equals(data.refType));</span></span><br><span class="line">            <span class="comment">//dataB.a = 25;</span></span><br><span class="line">            <span class="comment">//dataB.b = 35;</span></span><br><span class="line">            <span class="comment">//Debug.LogFormat("改变了局部变量所指的对象，value types:&#123;0&#125;,reference types:a=&#123;1&#125;,b=&#123;2&#125;，局部变量:a=&#123;3&#125;,b=&#123;4&#125;", </span></span><br><span class="line">            <span class="comment">//                data.age, data.refType.a, data.refType.b,dataB.a,dataB.b);</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"><span class="doctag">///</span>/ 改变 reference type 所指的值</span></span><br><span class="line">            <span class="comment">//Debug.Log("局部变量是否与 reference type 相同（Equals函数）" + dataB.Equals(data.refType));</span></span><br><span class="line">            <span class="comment">//data.refType.a = 35;</span></span><br><span class="line">            <span class="comment">//data.refType.b = 45;</span></span><br><span class="line">            <span class="comment">//Debug.LogFormat("改变 reference type 所指的对象，value types:&#123;0&#125;,reference types:a=&#123;1&#125;,b=&#123;2&#125;，局部变量:a=&#123;3&#125;,b=&#123;4&#125;",</span></span><br><span class="line">            <span class="comment">//                data.age, data.refType.a, data.refType.b, dataB.a, dataB.b);</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// 改变局部变量的指向</span></span><br><span class="line">            <span class="comment">// dataB = new ReadOnlyDataB &#123; a = 45, b = 55 &#125;;</span></span><br><span class="line">            Debug.Log(<span class="string">"改变了局部变量的指向后，是否还与 reference type 相同（Equals函数）"</span> + dataB.Equals(data.refType));</span><br><span class="line">            Debug.LogFormat(<span class="string">"改变了局部变量的指向后，value types:&#123;0&#125;,reference types:a=&#123;1&#125;,b=&#123;2&#125;，局部变量:a=&#123;3&#125;,b=&#123;4&#125;"</span>,</span><br><span class="line">                            data.age, data.refType.a, data.refType.b, dataB.a, dataB.b);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// data.refType = new ReadOnlyDataB &#123; a = 45, b = 55 &#125;;// 无法对只读字段进行赋值，初始化和构造函数除外。</span></span><br><span class="line">            <span class="comment">// data1.age = 20; // 无法对只读字段进行赋值，初始化和构造函数除外。</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ReadOnlyData</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// readonly 变量直接在申明的时候赋值。</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">readonly</span> <span class="keyword">int</span> age  = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// reference types 用 readonly 修饰</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">readonly</span> ReadOnlyDataB refType = <span class="keyword">new</span> ReadOnlyDataB &#123; a = <span class="number">10</span>, b = <span class="number">20</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ReadOnlyData</span>(<span class="params"><span class="keyword">int</span> age,<span class="keyword">ref</span> ReadOnlyDataB refType</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        refType = <span class="keyword">new</span> ReadOnlyDataB &#123; a = <span class="number">100</span>, b = <span class="number">101</span> &#125;;</span><br><span class="line">        <span class="keyword">this</span>.age = age; <span class="comment">// 可以， readonly 变量可以在构造函数中赋值。</span></span><br><span class="line">        <span class="keyword">this</span>.refType = refType;</span><br><span class="line">        <span class="keyword">this</span>.refType.a = <span class="number">120</span>;</span><br><span class="line">        <span class="keyword">this</span>.refType.b = <span class="number">121</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ReadOnlyData</span>(<span class="params"></span>) <span class="comment">// :this(10,new ReadOnlyDataB &#123; a=10,b=20&#125;)</span></span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ChangeAge</span>(<span class="params"><span class="keyword">int</span> age</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// this.age = age; // 错误，除了申明和构造函数中不能对 readonly 赋值</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ChangeReferenceValue</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// this.refType = new ReadOnlyDataB &#123; a = 45, b = 55 &#125;;// 错误，除了申明和构造函数中不能对 readonly 赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ReadOnlyDataB</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> a;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>运行结果：</p>
+<blockquote>
+<ul>
+<li>使用申明时的赋值，value types:10,reference types:a=10,b=20</li>
+<li>使用构造函数中的赋值，value types:15,reference types:a=120,b=121</li>
+<li>改变了局部变量的指向后，是否还与 reference type 相同（Equals函数）True</li>
+<li>改变了局部变量的指向后，value types:15,reference types:a=120,b=121，局部变量:a=120,b=121</li>
+</ul>
+</blockquote>
+<p>解释如图：<br><img src="/img/paramTansfer3.png" alt></p>
+<p>将 ref 修饰词给去掉之后：</p>
+<blockquote>
+<ul>
+<li>使用申明时的赋值，value types:10,reference types:a=10,b=20</li>
+<li>使用构造函数中的赋值，value types:15,reference types:a=120,b=121    </li>
+<li>改变了局部变量的指向后，是否还与 reference type 相同（Equals函数）False</li>
+<li>改变了局部变量的指向后，value types:15,reference types:a=120,b=121，局部变量:a=15,b=25</li>
+</ul>
+</blockquote>
+<p>解释如图：<br><img src="/img/paramTansfer4.png" alt></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/烂醉花间Dlitf">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZhangQR">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
