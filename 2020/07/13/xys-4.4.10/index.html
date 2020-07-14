@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Record my life and progress(maybe)">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        CustomYieldInstruction - ZhangQR的博客 | ZhangQR&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> A game,a show or a sing. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>zhangqr</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CustomYieldInstruction-文档"><span class="toc-text">CustomYieldInstruction 文档</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#定时回调的实现"><span class="toc-text">定时回调的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#工作线程"><span class="toc-text">工作线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用法"><span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ParallelFor-Job"><span class="toc-text">ParallelFor Job</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IJobParallelForTransform"><span class="toc-text">IJobParallelForTransform</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> A game,a show or a sing. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        CustomYieldInstruction
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-07-13 15:14:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Unity" title="Unity">Unity</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#宣雨松" title="宣雨松">宣雨松</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="CustomYieldInstruction-文档"><a href="#CustomYieldInstruction-文档" class="headerlink" title="CustomYieldInstruction 文档"></a>CustomYieldInstruction 文档</h1><p>如果想要在协程函数里面自定义 <code>yield return new xxxxClass();</code> 那么就需要继承自 <code>CustomYieldInstruction</code>，然后重写里面的 <code>keepWaiting</code> 属性，为 false 的时候表示继续运行，true 的时候表示继续挂起（等待），每一帧都会在 <code>MonoBehaviour.Update</code> 之后，<code>MonoBehaviour.LateUpdate</code> 之前检查一遍 <code>keepWaiting</code> 的值，并确定要不要运行。</p>
+<p>下面的例子运行效果是：先点击 “开始等待按下鼠标右键” 的按钮，此时输出 <code>start waitting mouse button down</code>，然后当前线程会继续运行，所以会输出 <code>wait-mouse-button-down coroutine has started</code>, 而 “等待右键按下的协程” 此时在等待右键按下。当右键按下后协程函数会继续运行，所以会输出 <code>right button pressed</code>。</p>
+<p>代码和运行结果如下：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：CustomYieldInstructionTest.cs</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomYieldInstructionTest</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">"开始等待按下鼠标右键"</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            StartCoroutine(WaitMouseButtonDown());</span><br><span class="line">            Debug.Log(<span class="string">"wait-mouse-button-down coroutine has started"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> IEnumerator <span class="title">WaitMouseButtonDown</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">yield</span> return new <span class="title">WaitForMouseDown</span>(<span class="params"></span>)</span>;</span><br><span class="line">        Debug.Log(<span class="string">"right button pressed"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 最好把这个类放到 Plugins 之类的文件中，这样可以保证它在 JS 脚本前面编译</span></span><br><span class="line"><span class="comment">// （可能对于 c# 脚本没有这个担心的必要）</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">WaitForMouseDown</span> : <span class="title">CustomYieldInstruction</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 当鼠标右键按下的时候返回 false，也就是继续运行</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">bool</span> keepWaiting</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123; <span class="keyword">return</span> !Input.GetMouseButtonDown(<span class="number">1</span>); &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WaitForMouseDown</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Debug.Log(<span class="string">"start waitting mouse button down"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>start waitting mouse button down</li>
+<li>wait-mouse-button-down coroutine has started</li>
+<li>right button pressed</li>
+</ul>
+</blockquote>
+<h1 id="定时回调的实现"><a href="#定时回调的实现" class="headerlink" title="定时回调的实现"></a>定时回调的实现</h1><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.Events;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现每过一秒执行一次回调，然后经过 x 秒结束任务</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Script_04_19</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Start is called before the first frame update</span></span><br><span class="line">    <span class="function">IEnumerator <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Debug.LogFormat(<span class="string">"10s start，now time：&#123;0&#125;"</span>, Time.time);</span><br><span class="line">        <span class="function"><span class="keyword">yield</span> return new <span class="title">CustomWait</span>(<span class="params"><span class="number">10</span>, <span class="number">1</span>, (</span>)</span> =&gt; &#123; Debug.LogFormat(<span class="string">"now time: &#123;0&#125;"</span>, Time.time); &#125;);</span><br><span class="line">        Debug.LogFormat(<span class="string">"10s over，now time：&#123;0&#125;"</span>, Time.time);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomWait</span> : <span class="title">CustomYieldInstruction</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">bool</span> keepWaiting</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(Time.time - m_StartTime &gt;= m_TotalTime)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 协程结束</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">// 如果经过了时间间隔的话，调用一次 callback</span></span><br><span class="line">                    <span class="keyword">if</span>(Time.time - m_LastTime &gt;= m_Interval)</span><br><span class="line">                    &#123;</span><br><span class="line">                        m_LastTime = Time.time;</span><br><span class="line">                        callback();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">// 协程继续挂起，等待下一次判断</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">float</span> m_TotalTime; <span class="comment">// 总时间</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">float</span> m_Interval; <span class="comment">// 时间间隔</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">float</span> m_StartTime; <span class="comment">// 开始的时间</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">float</span> m_LastTime; <span class="comment">// 上一次回调的时间</span></span><br><span class="line">        <span class="keyword">private</span> UnityAction callback; <span class="comment">// 回调委托</span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">CustomWait</span>(<span class="params"><span class="keyword">float</span> totalTime,<span class="keyword">float</span> interval,UnityAction callback</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">this</span>.m_TotalTime = totalTime;</span><br><span class="line">            <span class="keyword">this</span>.m_Interval = interval;</span><br><span class="line">            <span class="keyword">this</span>.m_StartTime = Time.time;</span><br><span class="line">            <span class="keyword">this</span>.m_LastTime = Time.time;</span><br><span class="line">            <span class="keyword">this</span>.callback = callback;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>直接点击运行，结果为：</p>
+<blockquote>
+<ul>
+<li>10s start，now time：0</li>
+<li>now time: 1.003115</li>
+<li>now time: 2.007475</li>
+<li>now time: 3.010088</li>
+<li>now time: 4.011698</li>
+<li>now time: 5.013549</li>
+<li>now time: 6.015391</li>
+<li>now time: 7.01544</li>
+<li>now time: 8.018571</li>
+<li>now time: 9.019051</li>
+<li>10s over，now time：10.00058  </li>
+</ul>
+</blockquote>
+<p>可以看到基本上是实现了的，但是我认为还是存在三个问题：</p>
+<ul>
+<li>无法设置非常小的时间间隔。假设游戏是以 30FPS 稳定运行，那么就不能通过这种方法完成每 0.03s 回调一次的功能，因为帧与帧之间是 0.02s。</li>
+<li>掉帧或者运行不稳定的话，不能每次时间间隔相等。其实从上面也可以看出来每次的时间间隔也是有细微差别的，如果一帧运算量过大导致掉帧，那这种差别就更大了。</li>
+<li>因为每一次离预期的时间间隔都会有细小的差别，以后每次回调的时间都是在上一次上再计算，就会导致差距越来越大。我试验到 1000s ，最后的结果为：<blockquote>
+<ul>
+<li>now time: 999.7771</li>
+<li>1000s over，now time：1000.004</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>可以看到，现在已经到了 999.777，那我有理由相信 2000s 的时候，就会有 1s 以上的差值。</p>
+<ul>
+<li>改动一：将内部类提出来了，可行。</li>
+<li>将 Start 的返回值变成了 <code>IEnumerator</code> 之后，就不能有 <code>void Start</code> 了。</li>
+</ul>
+<h1 id="工作线程"><a href="#工作线程" class="headerlink" title="工作线程"></a>工作线程</h1><p>想要运行多线程的任务，一种方法是在主线程创建新的线程，然后运行结束之后将结果与主线程同步，但这样适用于少量的，长期运作的线程，但游戏经常会创建大量的小体量的线程，这样的话每个线程的生命周期都很短，可能会成为 CPU 和操作系统的瓶颈。另一种方法是使用线程池，但如果同时有大量的活动线程，超过了 CPU 的物理核心数的话，就会导致线程之间的竞争，从而产生频繁的上下文切换。而 Job System 基本上保证一个 Work Thread 对应一个逻辑核心，以减少上下文的切换，Job System 会将 Job 放到一个工作队列，然后顺序的执行，每个 Job 之间可以是独立的，也可以是依赖的，Job System 会保证执行的顺序和依赖关系。<br>在写多线程的代码时，如果出现了因为竞争导致的 bug，那绝对是非常痛苦的，因为不一定能复现。<a href="https://docs.unity3d.com/Manual/JobSystemSafetySystem.html" target="_blank" rel="noopener">Unity 官网</a> 上举了一个例子，如果主线程将一个引用传递给工作线程，那工作线程是不知道自己在改变这个值的时候，主线程是否在读取的，为了避免这种情况的发生，Unity 采用的策略是，在线程之间不传递引用，只传递拷贝，这样的话就需要保证可传递的数据类型都是 <a href="https://en.wikipedia.org/wiki/Blittable_types" target="_blank" rel="noopener">blittable data types</a> 的，这样在托管内存和非托管内存中移动时不需要转化（这里暂时不是很懂），具体的类型为：</p>
+<ul>
+<li>System.Byte</li>
+<li>System.SByte</li>
+<li>System.Int16</li>
+<li>System.UInt16</li>
+<li>System.Int32</li>
+<li>System.UInt32</li>
+<li>System.Int64</li>
+<li>System.UInt64</li>
+<li>System.IntPtr</li>
+<li>System.UIntPtr</li>
+<li>System.Single</li>
+<li>System.Double</li>
+</ul>
+<p>这样的显而易见的问题就是，会出现多份拷贝，并且在各个线程中不统一的情况。为了解决这个问题，再引出一个 <code>NativeContainer</code>，他其实是主线程开启的一块共享内存，工作线程可以直接操作这块内存中的数据，从而避免拷贝，这种数据的类型为 <a href="https://docs.unity3d.com/ScriptReference/Unity.Collections.NativeArray_1.html" target="_blank" rel="noopener">NativeArray</a>,他可以保证多个线程在写入相同的共享内存时，会抛出异常，这时可以考虑将两者或者多者在共享内存的使用上设置为依赖关系。默认情况下，一个 job 对 NativeArray 有权限时，意味着它拥有读和写权限。如果只需要读的话，可以在加上 [ReadOnly], 两个同时只具有读权限的 Job 可以同时读取一块共享内存。使用方法如下：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">ReadOnly</span>]</span><br><span class="line"><span class="keyword">public</span> NativeArray&lt;<span class="keyword">int</span>&gt; input;</span><br></pre></td></tr></table></figure>
+
+<p>注意：static 数据会绕过所有的安全系统。<br>在创建 <code>NativeArray</code> 的时候，应该指定内存分配器的类型，有以下三种类型：</p>
+<ul>
+<li><code>Allocator.Temp</code> 具有最快的分配速度。此类型适用于寿命为一帧或更短的分配。不应该使用 Temp 将 NativeContainer 分配传递给作业。在从方法调用（例如 MonoBehaviour.Update 或从本机代码到托管代码的任何其他回调）返回之前，还需要调用 Dispose 方法。</li>
+<li><code>Allocator.TempJob</code> 的分配速度比 Temp 慢，但比 Persistent 快。此类型适用于寿命为四帧的分配，并具有线程安全性。如果没有在四帧内对其执行 Dispose 方法，控制台会输出一条从本机代码生成的警告。大多数小作业都使用这种 NativeContainer 分配类型。</li>
+<li><code>Allocator.Persistent</code> 是最慢的分配，但可以在您所需的任意时间内持续存在，如果有必要，可以在整个应用程序的生命周期内存在。此分配器是直接调用 malloc 的封装器。持续时间较长的作业可以使用这种 NativeContainer 分配类型。在非常注重性能的情况下不应使用 Persistent</li>
+</ul>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>创建如下作业，注意类内的成员变量只能为 blittable type 或者 NativeContainer type 之一，blittable type 的成员变量是拷贝，所以主线程想要访问工作线程的数据的话，只能通过 NativeContainer type。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将两个浮点值相加的作业</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> MyJob : IJob</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">float</span> a;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">float</span> b;</span><br><span class="line">    <span class="keyword">public</span> NativeArray&lt;<span class="keyword">float</span>&gt; result;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Execute</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        result[<span class="number">0</span>] = a + b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用 Schedule 会将作业放到作业队列中，并且作业一旦已经被调度（这里应该就是指进入了作业队列的意思吧），那么就无法终止。以下代码在主线程中：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建单个浮点数的本机数组以存储结果。此示例等待作业完成，仅用于演示目的</span></span><br><span class="line">NativeArray&lt;<span class="keyword">float</span>&gt; result = <span class="keyword">new</span> NativeArray&lt;<span class="keyword">float</span>&gt;(<span class="number">1</span>, Allocator.TempJob);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置作业数据</span></span><br><span class="line">MyJob jobData = <span class="keyword">new</span> MyJob();</span><br><span class="line">jobData.a = <span class="number">10</span>;</span><br><span class="line">jobData.b = <span class="number">10</span>;</span><br><span class="line">jobData.result = result;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调度作业</span></span><br><span class="line">JobHandle handle = jobData.Schedule();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等待作业完成</span></span><br><span class="line">handle.Complete();</span><br><span class="line"></span><br><span class="line"><span class="comment">// NativeArray 的所有副本都指向同一内存，您可以在"您的"NativeArray 副本中访问结果</span></span><br><span class="line"><span class="keyword">float</span> aPlusB = result[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 释放由结果数组分配的内存</span></span><br><span class="line">result.Dispose();</span><br></pre></td></tr></table></figure>
+
+<p>如果存在依赖的话，可以在调用 <code>Schedule</code> 方法时，将需要依赖的另一个 JobHandle 传入：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JobHandle firstJobHandle = firstJob.Schedule();</span><br><span class="line">secondJob.Schedule(firstJobHandle);</span><br></pre></td></tr></table></figure>
+
+<p>如果不止一个依赖的话，可以使用 <code>JobHandle.CombineDependencies</code> 进行整合：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NativeArray&lt;JobHandle&gt; handles = <span class="keyword">new</span> NativeArray&lt;JobHandle&gt;(numJobs, Allocator.TempJob);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用来自多个调度作业的 `JobHandles` 填充 `handles`...</span></span><br><span class="line"></span><br><span class="line">JobHandle jh = JobHandle.CombineDependencies(handles);</span><br></pre></td></tr></table></figure>
+
+<p>执行了 <code>Schedule</code> 只是将 Job 加入了作业队列，如果在主线程中需要结果的话，可以调用 <code>Complete</code> 方法，它将先执行调用者及其依赖项的任务，并将该作业的 NativeContainer 类型的所有权交还给主线程。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 作业代码</span></span><br><span class="line"><span class="comment">// 将两个浮点值相加的作业</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> MyJob : IJob</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">float</span> a;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">float</span> b;</span><br><span class="line">    <span class="keyword">public</span> NativeArray&lt;<span class="keyword">float</span>&gt; result;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Execute</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        result[<span class="number">0</span>] = a + b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将一个值加一的作业</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> AddOneJob : IJob</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> NativeArray&lt;<span class="keyword">float</span>&gt; result;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Execute</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        result[<span class="number">0</span>] = result[<span class="number">0</span>] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 主线程代码</span></span><br><span class="line"><span class="comment">// 创建单个浮点数的本机数组以存储结果。此示例等待作业完成</span></span><br><span class="line">NativeArray&lt;<span class="keyword">float</span>&gt; result = <span class="keyword">new</span> NativeArray&lt;<span class="keyword">float</span>&gt;(<span class="number">1</span>, Allocator.TempJob);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置作业 #1 的数据</span></span><br><span class="line">MyJob jobData = <span class="keyword">new</span> MyJob();</span><br><span class="line">jobData.a = <span class="number">10</span>;</span><br><span class="line">jobData.b = <span class="number">10</span>;</span><br><span class="line">jobData.result = result;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调度作业 #1</span></span><br><span class="line">JobHandle firstHandle = jobData.Schedule();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置作业 #2 的数据</span></span><br><span class="line">AddOneJob incJobData = <span class="keyword">new</span> AddOneJob();</span><br><span class="line">incJobData.result = result;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调度作业 #2</span></span><br><span class="line">JobHandle secondHandle = incJobData.Schedule(firstHandle);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等待作业 #2 完成</span></span><br><span class="line">secondHandle.Complete();</span><br><span class="line"></span><br><span class="line"><span class="comment">// NativeArray 的所有副本都指向同一内存，您可以在"您的"NativeArray 副本中访问结果</span></span><br><span class="line"><span class="keyword">float</span> aPlusB = result[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 释放由结果数组分配的内存</span></span><br><span class="line">result.Dispose();</span><br></pre></td></tr></table></figure>
+
+<h2 id="ParallelFor-Job"><a href="#ParallelFor-Job" class="headerlink" title="ParallelFor Job"></a><a href="https://docs.unity3d.com/ScriptReference/Unity.Jobs.IJobParallelFor.html" target="_blank" rel="noopener">ParallelFor Job</a></h2><p>如果我们希望大量的对象执行相同的操作，那么可以使用 ParallelFor Job，结构体实现 IJobParallelFor 接口，就是 ParallelFor Job，它使用一个数据 NativeArray 作为其数据源。并对数据源中的每一项都调用一次 Execute 方法。Execute 方法中有一个整数参数。该索引用于访问和操作作业实现中的数据源的单个元素。下面的例子中出现了三个 NativeArray ，但唯一的那个数据源其实是传递了长度的 NativeArray，他决定了调用几次 Execute。ParallelFor Job 运行在多个核上，彼此独立，可以同时操作多个 Execute。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 作业代码</span></span><br><span class="line"><span class="comment">// 将两个浮点值相加的作业</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> MyParallelJob : IJobParallelFor</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">ReadOnly</span>]</span><br><span class="line">    <span class="keyword">public</span> NativeArray&lt;<span class="keyword">float</span>&gt; a;</span><br><span class="line">    [<span class="meta">ReadOnly</span>]</span><br><span class="line">    <span class="keyword">public</span> NativeArray&lt;<span class="keyword">float</span>&gt; b;</span><br><span class="line">    <span class="keyword">public</span> NativeArray&lt;<span class="keyword">float</span>&gt; result;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Execute</span>(<span class="params"><span class="keyword">int</span> i</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        result[i] = a[i] + b[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 主线程代码</span></span><br><span class="line">NativeArray&lt;<span class="keyword">float</span>&gt; a = <span class="keyword">new</span> NativeArray&lt;<span class="keyword">float</span>&gt;(<span class="number">2</span>, Allocator.TempJob);</span><br><span class="line"></span><br><span class="line">NativeArray&lt;<span class="keyword">float</span>&gt; b = <span class="keyword">new</span> NativeArray&lt;<span class="keyword">float</span>&gt;(<span class="number">2</span>, Allocator.TempJob);</span><br><span class="line"></span><br><span class="line">NativeArray&lt;<span class="keyword">float</span>&gt; result = <span class="keyword">new</span> NativeArray&lt;<span class="keyword">float</span>&gt;(<span class="number">2</span>, Allocator.TempJob);</span><br><span class="line"></span><br><span class="line">a[<span class="number">0</span>] = <span class="number">1.1</span>;</span><br><span class="line">b[<span class="number">0</span>] = <span class="number">2.2</span>;</span><br><span class="line">a[<span class="number">1</span>] = <span class="number">3.3</span>;</span><br><span class="line">b[<span class="number">1</span>] = <span class="number">4.4</span>;</span><br><span class="line"></span><br><span class="line">MyParallelJob jobData = <span class="keyword">new</span> MyParallelJob();</span><br><span class="line">jobData.a = a;  </span><br><span class="line">jobData.b = b;</span><br><span class="line">jobData.result = result;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调度作业，为结果数组中的每个索引执行一个 Execute 方法，且每个处理批次只处理一项</span></span><br><span class="line">JobHandle handle = jobData.Schedule(result.Length, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等待作业完成</span></span><br><span class="line">handle.Complete();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 释放数组分配的内存</span></span><br><span class="line">a.Dispose();</span><br><span class="line">b.Dispose();</span><br><span class="line">result.Dispose();</span><br></pre></td></tr></table></figure>
+
+<h2 id="IJobParallelForTransform"><a href="#IJobParallelForTransform" class="headerlink" title="IJobParallelForTransform"></a>IJobParallelForTransform</h2><p>ParallelForTransform 作业是另一种 ParallelFor 作业；专为操作变换组件而设计。（好好用。。可以快速的实现大量物体的坐标变化）<br>运行效果：<br>将想要调整位置的物体的 transform 引用设置好，然后运行，点击按钮，三个物体的 position 会变成代码中 position(NativeArray<vector3>) 的位置。<br><img src="/img/xys_4.4.11_1.jpg" alt><br><img src="/img/xys_4.4.11_2.jpg" alt></vector3></p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：Script_04_20.cs</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.Jobs;</span><br><span class="line"><span class="keyword">using</span> Unity.Jobs;</span><br><span class="line"><span class="keyword">using</span> Unity.Collections;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Script_04_20</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> Transform[] trans;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">"开始调整位置"</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 定义并初始化 NativeArray。</span></span><br><span class="line">            NativeArray&lt;Vector3&gt; position = <span class="keyword">new</span> NativeArray&lt;Vector3&gt;(trans.Length,Allocator.Persistent);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; position.Length; ++i)</span><br><span class="line">            &#123;</span><br><span class="line">                position[i] = Vector3.one * i;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 获得 TransformAccessArray,当 transArray 改变时，trans 所对应的物体的 transform 也会跟着改变。</span></span><br><span class="line">            TransformAccessArray transArray = <span class="keyword">new</span> TransformAccessArray(trans);</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 启动工作线程</span></span><br><span class="line">            MyJob myJob = <span class="keyword">new</span> MyJob &#123; arry = position &#125;;</span><br><span class="line">            JobHandle hj = myJob.Schedule(transArray);</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 等待工作线程结束</span></span><br><span class="line">            hj.Complete();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 结束</span></span><br><span class="line">            transArray.Dispose();</span><br><span class="line">            position.Dispose();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">struct</span> MyJob : IJobParallelForTransform</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 因为不需要对其有写操作，所以可以加一个 [ReadOnly]</span></span><br><span class="line">        [<span class="meta">ReadOnly</span>]<span class="keyword">public</span> NativeArray&lt;Vector3&gt; arry;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Execute</span>(<span class="params"><span class="keyword">int</span> index, TransformAccess transform</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            transform.position = arry[index];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/烂醉花间Dlitf">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZhangQR">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
