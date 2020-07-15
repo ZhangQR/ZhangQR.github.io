@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Record my life and progress(maybe)">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        脚本调试 - ZhangQR的博客 | ZhangQR&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> A game,a show or a sing. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>zhangqr</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#脚本编译规则"><span class="toc-text">脚本编译规则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#优化编译"><span class="toc-text">优化编译</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#编译DLL-（没懂）"><span class="toc-text">编译DLL （没懂）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#脚本跨平台"><span class="toc-text">脚本跨平台</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#程序集定义"><span class="toc-text">程序集定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#日志"><span class="toc-text">日志</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#脚本调试"><span class="toc-text">脚本调试</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> A game,a show or a sing. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        脚本调试
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-07-15 19:13:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Unity" title="Unity">Unity</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#宣雨松" title="宣雨松">宣雨松</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="脚本编译规则"><a href="#脚本编译规则" class="headerlink" title="脚本编译规则"></a>脚本编译规则</h1><ul>
+<li>最终所有代码都会生成 dll，放在 Project/Library/ScriptAssembiles 下面。</li>
+<li>脚本分为运行时和编辑时两类，运行时脚本最终会编译进游戏包中，而编辑时脚本仅用于编辑器模式下，不会被打包进游戏包。</li>
+<li>脚本编译顺序：最先编译 Plugins 目录下的，然后是 Plugins 下的所有 Editor 子目录，然后编译其他目录，最后编译其他 Editor 目录。</li>
+<li>先编译的不可以访问后面的数据，所以 Plugins 下的代码不能访问其他代码，后编译的可以访问先编译的脚本。</li>
+<li>各目录脚本最终所在的 dll： <ul>
+<li>Plugins 下非 Editor 目录脚本编译进 Assembly-CSharp-firstpass.dll</li>
+<li>Plugins 下的 Editor 目录脚本编译进 Assembly-CSharp-Editor-firstpass.dll</li>
+<li>其他非 Editor 目录脚本编译进 Assembly-CSharp.dll</li>
+<li>其他 Editor 目录脚本编译进 Assembly-CSharp-Editor.dll</li>
+</ul>
+</li>
+</ul>
+<h1 id="优化编译"><a href="#优化编译" class="headerlink" title="优化编译"></a>优化编译</h1><p>Tips：</p>
+<ul>
+<li>当游戏内有很多 C# 代码时，改动一点点代码就需要等很久，因为 Unity 在重新编译 dll，可以将代码分为框架类代码和逻辑性代码，框架性代码一般写好之后不会经常变动，常常需要更改的往往是逻辑性代码，将框架性代码放到 Plugins 目录下，那么在修改逻辑性代码时，就不会额外的编译 Plugins 目录下的代码了。</li>
+<li>如果代码量非常巨大，那么编译还是会很慢，可以将部分 CS 代码预先变异成 dll，这样编译速度就更快了。（暂时还不知道怎么做，先记录一下）</li>
+</ul>
+<h1 id="编译DLL-（没懂）"><a href="#编译DLL-（没懂）" class="headerlink" title="编译DLL （没懂）"></a>编译DLL （没懂）</h1><p>.NET 可以把 C/C++ 语言编译进 DLL，但是游戏发布后，有的平台是识别不了的，例如移动平台，此时如果编译 DLL 时只能编译 C# 代码，则需要在 macOS 系统中打开终端，输入编译指令，DLL 编译完后直接拖到项目中即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mcs -r:/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll</span><br><span class="line">-target:library -out:test.dll *.cs</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>UnityEngine.dll:编译所依赖的 DLL 文件。</li>
+<li>-target:library:生成 Library1 类型。</li>
+<li>-out:test.dll:最终生成 DLL 的保存目录。</li>
+<li>*.cs:表示当前目录下的所有 C# 代码。如果有多个目录多个文件，可以用空格分隔。</li>
+</ul>
+<h1 id="脚本跨平台"><a href="#脚本跨平台" class="headerlink" title="脚本跨平台"></a>脚本跨平台</h1><p>雨松大大夸了一波 Unity 的跨平台，没懂，应该是指 Unity 针对每个平台有一套底层的核心库，然后通过 C# 去调用，所以对于用户来说只需要使用 C# 就好了。</p>
+<blockquote>
+<p>Unity 自己提供了两个核心的 DLL 库，Unity 编辑器只支持 Windows、macOS 和 Linux 这 3 个平台，所以代码大部分是由 C# 编写的并且编译在 UnityEditor.dll 中，然后通过 Mono 实现了跨平台。运行时由于它兼容的平台非常多（目前已经有 20 多个平台了），并不是所有平台都能运行 DLL 的。再说，底层渲染方法也不能使用 C# 来调用，所以 Unity 只把 C# 接口封装到了 UnityEngine.dll 中。至于更底层的内部实现，则是由这个 DLL 再去调用 C++ 来完成的。拿移动平台来说，编译 C++ 的方式是不同的，Android 需要编译成 .so，ios 则需要编译在 .a 中。所以，Unity 会针对每个平台编译出这份核心库，从而实现了跨平台。现在 Unity 还支持 IL2CPP，它可以把 DLL 代码转化成 C++ 来执行，这从效率上又能提高一个台阶，并且开发者依然使用 C#，只有在打包的时候才会转化成 IL2CPP，整个过程使开发者无感，超棒der。虽然拿不到 Unity 的源码，但是 UnityEngine.dll 和 UnityEditor.dll 这两个 DLL 文件是可以反编译的。</p>
+</blockquote>
+<h1 id="程序集定义"><a href="#程序集定义" class="headerlink" title="程序集定义"></a>程序集定义</h1><p>上面提过如果程序过大的话，那么每次改动一点都会等待很久重新编译，除了上面两种方法之外还可以使用程序集。<br>用户在一个文件夹下新建一个程序集定义，那么就意味着这个文件夹及其子文件夹都变成了一个程序集，单独编译成一个 DLL，如果需要依赖其他的程序集的话，在程序集定义的 Inspector 面板上设置依赖。如图是在 A 程序集中设置了对 B 程序集的依赖。<br><img src="/img/xys_4.5.5_1.png" alt><br><img src="/img/xys_4.5.5_2.png" alt></p>
+<h1 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h1><p>在游戏发布时一定要将 Debug 给关掉，因为他会有额外的消耗，或者在编写需要输出日志的时候就加上，如果没有定义 UNITY_EDITOR 那么就关闭日志。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !UNITY_EDITOR</span></span><br><span class="line">    Debug.unityLogger.logEnabled = <span class="literal">false</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>除此之外，错误日志并不是主动打的，下面实现将错误信息打在屏幕上的功能，以方便 Debug。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：Script_04_21.cs</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 捕获错误，并将其显示在屏幕上</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Script_04_21</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 是否显示 UI</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">bool</span> m_bIsVisible = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 存储所有错误信息和调用栈 </span></span><br><span class="line">    <span class="keyword">private</span> List&lt;<span class="keyword">string</span>&gt; m_lErrorMsg = <span class="keyword">new</span> List&lt;<span class="keyword">string</span>&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 显示的 UI 范围</span></span><br><span class="line">    <span class="keyword">private</span> Rect m_rWindow = <span class="keyword">new</span> Rect(<span class="number">0</span>, <span class="number">0</span>, Screen.width, Screen.height);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置 Scroll 的位置</span></span><br><span class="line">    <span class="keyword">private</span> Vector2 m_v2ScrollPosition = Vector2.zero;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start is called before the first frame update</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// 监听 logMessageReceived ,参数：日志字符串(string)，调用栈(string)，消息类型(LogType)</span></span><br><span class="line">        Application.logMessageReceived += (logMsg, stackTrace, type) =&gt;</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(type == LogType.Error || type == LogType.Exception)</span><br><span class="line">            &#123;</span><br><span class="line">                m_bIsVisible = <span class="literal">true</span>;</span><br><span class="line">                m_lErrorMsg.Add(<span class="keyword">string</span>.Format(<span class="string">"&#123;0&#125; \n &#123;1&#125;"</span>, logMsg, stackTrace));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置 Error</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.LogError(<span class="string">"出错了:"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置异常</span></span><br><span class="line">        <span class="keyword">int</span>[] a = <span class="literal">null</span>;</span><br><span class="line">        a[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (m_bIsVisible)</span><br><span class="line">        &#123;</span><br><span class="line">            m_rWindow = GUILayout.Window(<span class="number">0</span>, m_rWindow, WindowFun, <span class="string">"console"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">WindowFun</span>(<span class="params"><span class="keyword">int</span> id</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        GUILayout.BeginHorizontal();</span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">"Clear"</span>, GUILayout.MaxWidth(<span class="number">200</span>)))</span><br><span class="line">        &#123;</span><br><span class="line">            m_lErrorMsg.Clear();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">"Close"</span>, GUILayout.MaxWidth(<span class="number">200</span>)))</span><br><span class="line">        &#123;</span><br><span class="line">            m_bIsVisible = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        GUILayout.EndHorizontal();</span><br><span class="line"></span><br><span class="line">        m_v2ScrollPosition = GUILayout.BeginScrollView(m_v2ScrollPosition);</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="keyword">var</span> msg <span class="keyword">in</span> m_lErrorMsg)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 因为不需要再打印其他的字符串，所以这边的颜色要不要换回来都没关系</span></span><br><span class="line">            Color currentColor = GUI.contentColor;</span><br><span class="line">            GUI.contentColor = Color.red;</span><br><span class="line">            GUILayout.TextField(msg);</span><br><span class="line">            GUI.contentColor = currentColor;</span><br><span class="line">        &#125;</span><br><span class="line">        GUILayout.EndScrollView();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在代码中我们估计打印了一个错误和故意搞了一个异常，运行效果如图所示，错误信息和调用栈都被打印下来了。<br><img src="/img/xys_4.5.6.png" alt></p>
+<h1 id="脚本调试"><a href="#脚本调试" class="headerlink" title="脚本调试"></a>脚本调试</h1><p>Unity 2018 彻底废除了 MonoDevelop，使用 VS，设置了断点之后，在点击 “附加到 Unity”，就会在断点处停住，但不知道为什么我无法像书上所说的，直接将鼠标放到变量身上就可以看到对应的值。<br>书中还写了一个小技巧，可以直接在监视中直接输入 <code>gameObject.transfrom.position</code> 或者 <code>gameObject.name</code> 来直接查看。 </p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/烂醉花间Dlitf">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZhangQR">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
