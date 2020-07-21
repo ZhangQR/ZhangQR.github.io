@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Record my life and progress(maybe)">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        事件系统 - ZhangQR的博客 | ZhangQR&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> A game,a show or a sing. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>zhangqr</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UnityAction-和-UnityEvent"><span class="toc-text">UnityAction 和 UnityEvent</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UI-事件"><span class="toc-text">UI 事件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UI-事件管理"><span class="toc-text">UI 事件管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RaycastTarget-优化"><span class="toc-text">RaycastTarget 优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用到的相关-API-介绍"><span class="toc-text">用到的相关 API 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行效果"><span class="toc-text">运行效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> A game,a show or a sing. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        事件系统
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-07-20 16:40:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Unity" title="Unity">Unity</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#宣雨松" title="宣雨松">宣雨松</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="UnityAction-和-UnityEvent"><a href="#UnityAction-和-UnityEvent" class="headerlink" title="UnityAction 和 UnityEvent"></a><a href="https://docs.unity3d.com/ScriptReference/Events.UnityAction.html" target="_blank" rel="noopener">UnityAction</a> 和 <a href="https://docs.unity3d.com/ScriptReference/Events.UnityEvent.html" target="_blank" rel="noopener">UnityEvent</a></h1><p>按我的理解的话，UnityAction 是委托，之前我也提到了，我觉得委托就是同类型方法指针的集合，而 UnityEvent 感觉是 UnityAction 的集合，但需要注意的是，这里的 UnityAction 也需要是同一类型的，所以自己想一下，感觉这样设置的好处可能只是能够将这么多同类型的方法再次进行一个分类，可以调用 <code>AddListener</code> 和 <code>RemoveListener</code> 来管理 UnityAction 。<br>使用事件的好处在于可以减少代码中的耦合，避免类和类之间相互调用，减少后期修改带来的维护成本，比如游戏中将网络请求、发送请求和处理请求的结果都放在同一个类（假设叫 A 类）中处理，在网络模块中有一个类似 AddListener 的接口，A 将自己的方法注册进去，那么在网络模块将网络消息处理结束之后，再执行这个类似 UnityEvent 的方法，那么未来 A 类发生了变化也不会影响到网络模块。<br>UnityAction 有 0-4 个参数的形式，都是无返回值的，而关于 UnityEvent，在<br><a href="https://docs.unity3d.com/ScriptReference/Events.UnityEvent.html" target="_blank" rel="noopener">Scripting API</a>上虽然也写了 4 种形式，但是可以看到都需要继承 UnityEvent 来实现。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">System.Serializable</span>]</span><br><span class="line">public class MyIntEvent : UnityEvent&lt;int&gt;</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>书上的完整例子是这样的，要特别注意的是 UnityAction 可添加泛型参数，但是 UnityEvent 如果要带参数的话，需要再写个继承类。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：Script_05_09.cs</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.Events;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里的继承的泛型需要与 UnityAction 的泛型类型相对应。</span></span><br><span class="line">[<span class="meta">System.Serializable</span>]</span><br><span class="line">public class MyEvent : UnityEvent&lt;int, string&gt; &#123; &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Script_05_09</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> UnityAction&lt;<span class="keyword">int</span>, <span class="keyword">string</span>&gt; Action1;</span><br><span class="line">    <span class="keyword">public</span> UnityAction&lt;<span class="keyword">int</span>, <span class="keyword">string</span>&gt; Action2;</span><br><span class="line">    <span class="keyword">public</span> MyEvent myEvent;</span><br><span class="line">    <span class="comment">// Start is called before the first frame update</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// 注意如果使用 += 的话，没有对应的 -=，会有隐患</span></span><br><span class="line">        Action1 = MyFunction1;</span><br><span class="line">        Action2 = MyFunction2;</span><br><span class="line">        myEvent.AddListener(Action1);</span><br><span class="line">        myEvent.AddListener(Action2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">MyFunction1</span>(<span class="params"><span class="keyword">int</span> n,<span class="keyword">string</span> str</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Debug.LogFormat(<span class="string">"My Function1 被调用，n: &#123;0&#125;,str: &#123;1&#125;"</span>, n, str);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">MyFunction2</span>(<span class="params"><span class="keyword">int</span> n,<span class="keyword">string</span> str</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Debug.LogFormat(<span class="string">"My Function2 被调用，n: &#123;0&#125;,str: &#123;1&#125;"</span>, n, str);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Update is called once per frame</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (Input.GetKeyDown(KeyCode.A))</span><br><span class="line">        &#123;</span><br><span class="line">            Action1(<span class="number">1</span>, <span class="string">"miao"</span>);</span><br><span class="line">            <span class="comment">// Action1.Invoke(1, "miao"); // 跟上面一样的</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (Input.GetKeyDown(KeyCode.B))</span><br><span class="line">        &#123;</span><br><span class="line">            Action2(<span class="number">2</span>, <span class="string">"wang"</span>);</span><br><span class="line">            <span class="comment">// Action2.Invoke(2, "wang"); // 跟上面一样的</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (Input.GetKeyDown(KeyCode.C))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// myEvent(3, "wu~");  // UnityEvent 不能这么使用</span></span><br><span class="line">            myEvent.Invoke(<span class="number">3</span>, <span class="string">"wu~"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        GUILayout.TextField(<span class="string">"请尝试按下 A/B/C 键"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="UI-事件"><a href="#UI-事件" class="headerlink" title="UI 事件"></a>UI 事件</h1><p>事件依赖于 Graphic Raycaster 组件，应该是挂在 Canvas 上的，代表这个 Canvas 下面的 UI 元素都接收点击事件，如果有部分元素是不需要接收点击事件的，那么可以将这部分放到一个单独的 Canvas 里面，然后把该 Canvas 上的 Graphic Raycaster 组件的 enable 设置为 false，或者直接删除 Graphic Raycaster 组件。<br>UGUI 有很多点击方法的时间，下面来看一下，接口对应的方法就不写了，这里好像都是一个接口里面只有一个方法，而且继承了接口的话，在代码中不实现也会报错。</p>
+<ul>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IPointerEnterHandler.html" target="_blank" rel="noopener">IPointerEnterHandler</a> 指针（鼠标之类的）进入该区域的时候调用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IPointerExitHandler.html" target="_blank" rel="noopener">IPointerExitHandler</a> 指针离开该区域的时候调用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IPointerDownHandler.html" target="_blank" rel="noopener">IPointerDownHandler</a> 指针按下的时候调用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IPointerUpHandler.html" target="_blank" rel="noopener">IPointerUpHandler</a> 鼠标抬起时调用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IPointerClickHandler.html" target="_blank" rel="noopener">IPointerClickHandler</a> 按下并抬起的时候调用，也就是点击的时候。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IInitializePotentialDragHandler.html" target="_blank" rel="noopener">IInitializePotentialDragHandler</a> 拖动初始化，不能获取到方向。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IBeginDragHandler.html" target="_blank" rel="noopener">IBeginDragHandler</a> 刚开始拖动的时候调用，并且可以获取到拖动的方向。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IDragHandler.html" target="_blank" rel="noopener">IDragHandler</a> 滑动持续时调用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IEndDragHandler.html" target="_blank" rel="noopener">IEndDragHandler</a> 滑动结束时调用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IDropHandler.html" target="_blank" rel="noopener">IDropHandler</a> 落下时调用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IScrollHandler.html" target="_blank" rel="noopener">IScrollHandler</a> 鼠标滚轮持续时调用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IUpdateSelectedHandler.html" target="_blank" rel="noopener">IUpdateSelectedHandler</a> 选择时调用，只针对 Selectable 起作用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.ISelectHandler.html" target="_blank" rel="noopener">ISelectHandler</a> 选择后调用，只针对 Selectable 起作用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IDeselectHandler.html" target="_blank" rel="noopener">IDeselectHandler</a> 取消选择的时候调用，因为只能选择一个 Selectable ，当选择新的之后，之前选择的都会回调取消选择事件。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IMoveHandler.html" target="_blank" rel="noopener">IMoveHandler</a> 选择后，可监听上下左右 WASD 方向键。如果访问 eventData.moveDir 还可以取到具体移动的方向。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.ISubmitHandler.html" target="_blank" rel="noopener">ISubmitHandler</a> 按钮按下事件。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.ICancelHandler.html" target="_blank" rel="noopener">ICancelHandler</a> 按钮取消事件，按下时按 Esc 键可取消。<br>下面演示如何让 image 反馈点击事件：<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：Script_05_06.cs</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.EventSystems;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Script_05_06</span> : <span class="title">MonoBehaviour</span>, <span class="title">IPointerClickHandler</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnPointerClick</span>(<span class="params">PointerEventData eventData</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Debug.Log(<span class="string">"image 被点击了"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>效果是在点击了这个图片之后控制台会显示 <code>image 被点击了</code>。</p>
+<h1 id="UI-事件管理"><a href="#UI-事件管理" class="headerlink" title="UI 事件管理"></a>UI 事件管理</h1><p>上面有很多接口，实现这些接口可以监听对应的事件，但这种方式要在每一个需要监听这个事件的物体上挂上这个脚本，也不符合 MVC(模型、视图和控制器) 的设计模式，所以最好是写一个类来统一管理 UI 事件，比如用 <code>MyOnClick</code> 方法来处理按钮、文本、图片元素的点击事件。这里需要用到 <a href="https://docs.unity3d.com/2018.3/Documentation/ScriptReference/EventSystems.EventTrigger.html" target="_blank" rel="noopener">EventSystems.EventTrigger</a>,这个类实现了上述的各种接口，并且都是 virtual 的，只需要继承了之后想要监听哪个事件就复写对应的方法即可，下面是 EventSystems.EventTrigger 的声明：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">UnityEngine.EventSystems</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">AddComponentMenu (<span class="meta-string">"Event/Event Trigger"</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EventTrigger</span> : <span class="title">MonoBehaviour</span>, <span class="title">IEventSystemHandler</span>, <span class="title">IPointerEnterHandler</span>, <span class="title">IPointerExitHandler</span>, <span class="title">IPointerDownHandler</span>, <span class="title">IPointerUpHandler</span>, <span class="title">IPointerClickHandler</span>, <span class="title">IBeginDragHandler</span>, <span class="title">IInitializePotentialDragHandler</span>, <span class="title">IDragHandler</span>, <span class="title">IEndDragHandler</span>, <span class="title">IDropHandler</span>, <span class="title">IScrollHandler</span>, <span class="title">IUpdateSelectedHandler</span>, <span class="title">ISelectHandler</span>, <span class="title">IDeselectHandler</span>, <span class="title">IMoveHandler</span>, <span class="title">ISubmitHandler</span>, <span class="title">ICancelHandler</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="comment">// Fields</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        [<span class="meta">Obsolete (<span class="meta-string">"Please use triggers instead (UnityUpgradable) -&gt; triggers"</span>, true)</span>]</span><br><span class="line">        <span class="keyword">public</span> List&lt;EventTrigger.Entry&gt; delegates;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="comment">// Properties</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="keyword">public</span> List&lt;EventTrigger.Entry&gt; triggers &#123;</span><br><span class="line">            <span class="keyword">get</span>;</span><br><span class="line">            <span class="keyword">set</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="comment">// Constructors</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="title">EventTrigger</span> (<span class="params"></span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="comment">// Methods</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Execute</span> (<span class="params">EventTriggerType id, BaseEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnBeginDrag</span> (<span class="params">PointerEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnCancel</span> (<span class="params">BaseEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnDeselect</span> (<span class="params">BaseEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnDrag</span> (<span class="params">PointerEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnDrop</span> (<span class="params">PointerEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnEndDrag</span> (<span class="params">PointerEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInitializePotentialDrag</span> (<span class="params">PointerEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnMove</span> (<span class="params">AxisEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnPointerClick</span> (<span class="params">PointerEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnPointerDown</span> (<span class="params">PointerEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnPointerEnter</span> (<span class="params">PointerEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnPointerExit</span> (<span class="params">PointerEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnPointerUp</span> (<span class="params">PointerEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnScroll</span> (<span class="params">PointerEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnSelect</span> (<span class="params">BaseEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnSubmit</span> (<span class="params">BaseEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnUpdateSelected</span> (<span class="params">BaseEventData eventData</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="comment">// Nested Types</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        [<span class="meta">Serializable</span>]</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Entry</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">public</span> EventTriggerType eventID;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">public</span> EventTrigger.TriggerEvent callback;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="title">Entry</span> (<span class="params"></span>)</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        [<span class="meta">Serializable</span>]</span><br><span class="line">        public class TriggerEvent : UnityEvent&lt;BaseEventData&gt;</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="title">TriggerEvent</span> (<span class="params"></span>)</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面是符合代码实现监听两个 button 、一个 image 和一个 text 的点击事件的代码。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名:Script_05_07.cs</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.Events;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.EventSystems;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.UI;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Script_05_07</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> Button button1;</span><br><span class="line">    <span class="keyword">public</span> Button button2;</span><br><span class="line">    <span class="keyword">public</span> Image image;</span><br><span class="line">    <span class="keyword">public</span> Text text;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 最好写在 Awake 里面？</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        button1.onClick.AddListener(<span class="keyword">delegate</span>() &#123;</span><br><span class="line">            <span class="keyword">this</span>.MyOnClick(button1.gameObject);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        button2.onClick.AddListener(<span class="keyword">delegate</span> ()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">this</span>.MyOnClick(button2.gameObject);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        UIEventListener.Get(image.gameObject).OnClick = MyOnClick;</span><br><span class="line">        UIEventListener.Get(text.gameObject).OnClick = MyOnClick;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">MyOnClick</span>(<span class="params">GameObject go</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// 判断的时候一定要 .gameObject</span></span><br><span class="line">        <span class="keyword">if</span>(go == button1.gameObject)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.LogFormat(<span class="string">"&#123;0&#125; 被按下了(button1)"</span>,go.name);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (go == button2.gameObject)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.LogFormat(<span class="string">"&#123;0&#125; 被按下了(button2)"</span>, go.name);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (go == image.gameObject)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.LogFormat(<span class="string">"&#123;0&#125; 被按下了(image)"</span>, go.name);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(go == text.gameObject)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.LogFormat(<span class="string">"&#123;0&#125; 被按下了(text)"</span>, go.name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UIEventListener</span> : <span class="title">EventTrigger</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> UnityAction&lt;GameObject&gt; OnClick;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnPointerClick</span>(<span class="params">PointerEventData eventData</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// 复写方法的时候都需要考虑一下要不要执行基类的方法。</span></span><br><span class="line">        <span class="keyword">base</span>.OnPointerClick(eventData);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 因为已经将这个脚本挂到了当前的物体身上，所以参数就是当前的物体</span></span><br><span class="line">        <span class="comment">// 下面的使用方法为如果委托不为空那么就调用</span></span><br><span class="line">        OnClick?.Invoke(gameObject);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果 go 上没有该脚本，那么给 go 添加上该脚本，如果有的话，直接返回</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">public</span> UIEventListener <span class="title">Get</span>(<span class="params">GameObject go</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        UIEventListener listener = go.GetComponent&lt;UIEventListener&gt;();</span><br><span class="line">        <span class="keyword">if</span>(listener == <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            listener = go.AddComponent&lt;UIEventListener&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> listener;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码中要注意理清传递方法和方法中使用的参数的过程，还有传参和比较的时候要注意转换成 GameObject 的类型。<br>关于方法的注册是应该写在 Start 里面还是 Awake 里面，个人的理解是，Awake 用来初始化自身的一些成员，Start 可以引用其他类的成员了，这样可以保证在引用其他类的成员时不会出现空指针，但是方法的注册，只能通过订阅者去注册，就是虽然 UnityAction 成员是在发布者的类里面的，但是自己身无法完成赋值，所以需要订阅者尽早的完成赋值，以免导致时间发生时方法还没有注册进去。<br>再说一下 MVC 的设计思路，一般是在控制层接收事件，再将事件传递给模块层，等模块层处理完毕再通知 UI 层刷新显示。</p>
+<h1 id="RaycastTarget-优化"><a href="#RaycastTarget-优化" class="headerlink" title="RaycastTarget 优化"></a>RaycastTarget 优化</h1><p>UGUI 的点击事件是基于射线的，像是 image 或者 text 不需要相应点击事件的话，那么就需要把身上的 RayCastTarget 取消选中。因为 UI 事件会在 EventSyetem 的 Update() 方法中调用 Process 时触发。UGUI 会遍历屏幕中所有的 RayCastTarget 为 True 的 UI，然后发射线，排序找到玩家最先触发的 UI，再抛出事件给出逻辑层去响应，这样无形中会带来很多开销。<br>优化的方式是尽量将每个不需要相应点击事件的 UI 身上的 RayCastTarget 给取消勾选，但是有时 UI 太多的话并不能保证自己能注意到每一个 UI，所以可以重写 OnDrawGizmos 方法将所有 RayCastTarget 为 true 的 UI 的边框在 Scene 中画出来。</p>
+<h2 id="用到的相关-API-介绍"><a href="#用到的相关-API-介绍" class="headerlink" title="用到的相关 API 介绍"></a>用到的相关 API 介绍</h2><ul>
+<li><a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnDrawGizmos.html" target="_blank" rel="noopener">OnDrawGizmos</a></li>
+<li><a href="https://docs.unity3d.com/ScriptReference/Gizmos.html" target="_blank" rel="noopener">Gizmos</a> 用于画各种图形，方块，圆，线之类的。在 UnityEngine 命名空间下。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.UI.MaskableGraphic.html?q=Maskable#methods" target="_blank" rel="noopener">MaskableGraphic</a>(UGUI 手册) / <a href="https://docs.unity3d.com/2018.1/Documentation/ScriptReference/UI.MaskableGraphic.html" target="_blank" rel="noopener">MaskableGraphic</a>(老版 Unity 官方 API 手册)，MaskableGraphic 是一个抽象类，Image,Text,RayImage 都是继承于它，MaskableGraphic 又是 Graphic 的子类，一会将用到的 raycastTarget 成员就是继承于 Graphic。 <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">MaskableGraphic</span> : <span class="title">Graphic</span>, </span><br><span class="line"><span class="title">ICanvasElement</span>, <span class="title">IClippable</span>, <span class="title">IMaskable</span>, <span class="title">IMaterialModifier</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="运行效果"><a href="#运行效果" class="headerlink" title="运行效果"></a>运行效果</h2><p>如图所示，RayCastTarget 为 true 的组件在 Scene 面板中会有一个红色的框框，然后在 Gizmos 勾选或者取消勾选对应的脚本名称，即可显示或者不显示这个自定义功能。<br><img src="/img/xys_5.2_1.png" alt><br><img src="/img/xys_5.2_2.png" alt></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：Script_05_10.cs</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.UI;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 找到场景中所有的 MaskableGraphic 的子类（比如 image，text，rayImage 等）</span></span><br><span class="line"><span class="comment">// 然后画出是否勾选了 Raycast Target</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Script_05_10</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// static 节约内存资源，应该还可以再优化节约计算资源。</span></span><br><span class="line">    <span class="keyword">private</span> Vector3[] corners = <span class="keyword">new</span> Vector3[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnDrawGizmos</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">foreach</span>(MaskableGraphic go <span class="keyword">in</span> GameObject.FindObjectsOfType&lt;MaskableGraphic&gt;())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (go.raycastTarget)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// RectTransform go_trans = go.transform as RectTransform;</span></span><br><span class="line">                RectTransform go_trans = go.rectTransform;</span><br><span class="line">                go_trans.GetWorldCorners(corners);</span><br><span class="line">                Gizmos.color = Color.red;</span><br><span class="line">                <span class="keyword">int</span> length = corners.Length;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">// 取模是为了首尾相连</span></span><br><span class="line">                    Gizmos.DrawLine(corners[i], corners[(i + <span class="number">1</span>) % length]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>关于 <code>corners</code> 是否需要加 static ，个人理解是，全场景只需要一个实例化的脚本，因为一个实例就可以遍历场景所有的 UI，而 corners 只是一个数据计算的工具台而已，只需要一个就够了，所以可以加 static，但其实这个可以直接写成单例，不然新建一个实例就会在每一帧多调用一次 OnDrawGizmos，对计算力来说是不必要的开销。<br>然后关于 Unity 自带的一些回调函数，比如说 Awake、Start、Update，其实不是在 MonoBehaviours 及其父类中定义的，而是采用了一种反射（具体不知道）机制实现的，所以不需要加 override，也不能写错方法的名字。<br>这里其实不需要特地考虑 corners 的长度，因为肯定是 4 个，GetWorldCorners 方法也限制了必须是 4 个。<br>关于 <code>GetWorldCorners</code> 方法，定义如下：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GetWorldCorners</span>(<span class="params">Vector3[] fourCornersArray</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>但是从功能上来说的话，其实 <code>fourCornersArray</code> 的参数更像是出参，我也做了一个实验，可以看到如果在调用前数组没有分配内存的话，Fun2 是会报错的，因为数组此时为 null，但是使用 Fun1 的话就不会出现这个问题，而官方应该是按照 Fun2 来实现的，所以有些不明白其中的奥义所在。</p>
+<pre><code class="cs"><span class="comment">// 解决方案名：csharpTest</span>
+<span class="comment">// 项目名：inOutTest</span>
+<span class="keyword">using</span> System;
+
+<span class="keyword">namespace</span> <span class="title">inOutTest</span>
+{
+    <span class="keyword">class</span> <span class="title">Program</span>
+    {
+        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Fun1</span>(<span class="params"><span class="keyword">out</span> A[] a</span>)</span>
+<span class="function"></span>        {
+            a = <span class="keyword">new</span> A[<span class="number">4</span>] { <span class="keyword">new</span> A{ a=<span class="number">1</span>,b = <span class="string">"m"</span>},<span class="keyword">new</span> A{ a = <span class="number">2</span>, b = <span class="string">"mm"</span> },
+                            <span class="keyword">new</span> A{ a=<span class="number">3</span>,b = <span class="string">"mmm"</span>},<span class="keyword">new</span> A{ a = <span class="number">4</span>, b = <span class="string">"mmmm"</span> }};
+        }
+        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Fun2</span>(<span class="params">A[] ass</span>)</span>
+<span class="function"></span>        {
+            ass[<span class="number">0</span>] = <span class="keyword">new</span> A { a = <span class="number">1</span>, b = <span class="string">"m"</span> };
+            ass[<span class="number">1</span>] = <span class="keyword">new</span> A { a = <span class="number">2</span>, b = <span class="string">"mm"</span> };
+            ass[<span class="number">2</span>] = <span class="keyword">new</span> A { a = <span class="number">3</span>, b = <span class="string">"mmm"</span> };
+            ass[<span class="number">3</span>] = <span class="keyword">new</span> A { a = <span class="number">4</span>, b = <span class="string">"mmmm"</span> };
+        }
+        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span>
+<span class="function"></span>        {
+            A[] ass <span class="comment">/* 可以在这里断开来试试，Fun2 会报错 */</span> = <span class="keyword">new</span> A[<span class="number">4</span>];
+            <span class="comment">// Fun1(out ass);</span>
+            Fun2(ass);
+
+            <span class="keyword">foreach</span> (A aa <span class="keyword">in</span> ass)
+            {
+                Console.WriteLine(aa);
+            }
+            Console.ReadKey();
+        }
+    }
+    <span class="keyword">class</span> <span class="title">A</span>
+    {
+        <span class="keyword">public</span> <span class="keyword">int</span> a;
+        <span class="keyword">public</span> <span class="keyword">string</span> b;
+        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">string</span> <span class="title">ToString</span>(<span class="params"></span>)</span>
+<span class="function"></span>        {
+            <span class="keyword">return</span> <span class="keyword">string</span>.Format(<span class="string">"a = {0},b = {1}"</span>, a, b);
+        }
+    }
+}</code></pre>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/烂醉花间Dlitf">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZhangQR">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
