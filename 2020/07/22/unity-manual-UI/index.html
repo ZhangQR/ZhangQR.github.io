@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Record my life and progress(maybe)">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Unity 官方手册-UI - ZhangQR的博客 | ZhangQR&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> A game,a show or a sing. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>zhangqr</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Unity-UI"><span class="toc-text">Unity UI</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Event-System"><span class="toc-text">Event System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Raycasters"><span class="toc-text">Raycasters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义消息"><span class="toc-text">自定义消息</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> A game,a show or a sing. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Unity 官方手册-UI
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-07-22 11:05:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Unity" title="Unity">Unity</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#宣雨松" title="宣雨松">宣雨松</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="Unity-UI"><a href="#Unity-UI" class="headerlink" title="Unity UI"></a>Unity UI</h1><h2 id="Event-System"><a href="#Event-System" class="headerlink" title="Event System"></a><a href="https://docs.unity3d.com/cn/2019.4/Manual/EventSystem.html" target="_blank" rel="noopener">Event System</a></h2><h3 id="Raycasters"><a href="#Raycasters" class="headerlink" title="Raycasters"></a>Raycasters</h3><p>事件系统需要一种方法来检测当前输入事件需要发送到的位置，而此方法由射线投射器 (Raycaster) 提供。给定屏幕空间位置的情况下，射线投射器将收集所有潜在目标，确定它们是否在给定位置下，然后返回最接近屏幕的对象。提供了几种类型的射线投射器：</p>
+<ul>
+<li>图形射线投射器 (Graphic Raycaster) - 用于 UI 元素，位于画布上，并在画布中搜索</li>
+<li>2D 物理射线投射器 (Physics 2D Raycaster) - 用于 2D 物理元素</li>
+<li>物理射线投射器 (Physics Raycaster) - 用于 3D 物理元素<br>当场景中存在并启用了射线投射器时，只要从输入模块发出查询，事件系统就会使用该射线投射器。</li>
+</ul>
+<p>如果使用多个射线投射器，那么这些射线投射器都会进行针对性投射，并且结果将根据与元素的距离进行排序。</p>
+<h3 id="自定义消息"><a href="#自定义消息" class="headerlink" title="自定义消息"></a>自定义消息</h3><p>之前我以为 event system 就是遍历场景中所有的 IEventSystemHandler，然后比如点击事件发生的时候，再调用所有实现了 IPointerClickHandler 接口的回调函数。那么我按下面的方式自定义了一个事件：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：CustomMessageTest.cs</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.EventSystems;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">ICustomEventHandler</span>: <span class="title">IEventSystemHandler</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Function1</span>(<span class="params"></span>)</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Function2</span>(<span class="params"></span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomMessageTest</span> : <span class="title">MonoBehaviour</span>, <span class="title">ICustomEventHandler</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Function1</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Debug.Log(<span class="string">"Function1 被执行了"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Function2</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Debug.Log(<span class="string">"Function2 被执行了"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只要我想办法说明 ICustomEventHandler 对应的事件发生了，那么所有挂着这个脚本的物体，应该可以自动调用 Function1 和 Function2 才对。因为系统自带的这些事件接口就是这样，只要实现了对应的接口，就会在事件发生的时候自动执行。<br>但事实上 ICustomEventHandler 这个事件发生并不是广播的方式，而且点对点的方式。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">Execute</span>(<span class="params">GameObject target, </span></span></span><br><span class="line"><span class="function"><span class="params">EventSystems.BaseEventData eventData, EventFunction&lt;T&gt; functor</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>从这个函数的参数也可以看出来，需要一个 target，eventData 和方法，所以如果想要实现物体一旦实现了 ICustomEventHandler，就可以在这个方法执行的时候调用 Function1 或者 Function2 或者两个一起的效果，需要遍历场景中所有的 ICustomEventHandler 再调用 ExecuteEvents.Execute 方法。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：CustomMessageTestMain.cs</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.EventSystems;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomMessageTestMain</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    CustomMessageTest[] customMeassge;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        customMeassge = GameObject.FindObjectsOfType&lt;CustomMessageTest&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">"触发自定义事件"</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            BaseEventData data = <span class="keyword">new</span> BaseEventData(EventSystem.current);</span><br><span class="line">            <span class="keyword">foreach</span>(CustomMessageTest msg <span class="keyword">in</span> customMeassge)</span><br><span class="line">            &#123;</span><br><span class="line">                ExecuteEvents.Execute&lt;CustomMessageTest&gt;(msg.gameObject, data, (x, y) =&gt; &#123;</span><br><span class="line">                    Debug.LogFormat(<span class="string">"x = &#123;0&#125;,y = &#123;1&#125;"</span>, x.name, y);</span><br><span class="line">                    x.Function1();</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>起初我不理解为什么自定义的消息将事件发生了进行广播，也就是不用我们自己去寻找场景中的所有实现了对应接口的物体进行通知，我后来认为可能是为了传参数和自定义 eventData，<code>Function1()</code> 是可以传参数的，只要在调用的时候也把参数加上就好了，然后 eventData 虽然目前都是 EventSystem.current，但说不定后面会有其他的 EventSystem。<br>然后也疑惑了一下为什么不能将点击事件放到一个接口里面，而是要像现在一样整 5 个接口(IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler,IPointerUpHandler,IPointerClickHandler)。因为 UGUI 背后应该也是可以自定义事件发生时执行的方法的，也就是像上面一样我可以自定义是执行 Function1，还是 Function2，还是两个一起执行，甚至还能加一个 debug 的 log 输出。我想应该是因为有的物体只想注册 Click 的 事件，但如果这样设计就需要实现所有的接口，那为什么不能整一个基类实现所有的接口，然后其子类可以复写相应的回调函数呢？可能 <code>Unity.EventSystem.EventTrigger</code> 就是因此而生的吧。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/烂醉花间Dlitf">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZhangQR">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UnityAction-和-UnityEvent"><span class="toc-text">UnityAction 和 UnityEvent</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UI-事件"><span class="toc-text">UI 事件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UI-事件管理"><span class="toc-text">UI 事件管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RaycastTarget-优化"><span class="toc-text">RaycastTarget 优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用到的相关-API-介绍"><span class="toc-text">用到的相关 API 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行效果"><span class="toc-text">运行效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UnityAction-和-UnityEvent"><span class="toc-text">UnityAction 和 UnityEvent</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UI-事件"><span class="toc-text">UI 事件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UI-事件管理"><span class="toc-text">UI 事件管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RaycastTarget-优化"><span class="toc-text">RaycastTarget 优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用到的相关-API-介绍"><span class="toc-text">用到的相关 API 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行效果"><span class="toc-text">运行效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例子——新手引导聚合动画"><span class="toc-text">例子——新手引导聚合动画</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -149,23 +149,23 @@
 
 <h1 id="UI-事件"><a href="#UI-事件" class="headerlink" title="UI 事件"></a>UI 事件</h1><p>事件依赖于 Graphic Raycaster 组件，应该是挂在 Canvas 上的，代表这个 Canvas 下面的 UI 元素都接收点击事件，如果有部分元素是不需要接收点击事件的，那么可以将这部分放到一个单独的 Canvas 里面，然后把该 Canvas 上的 Graphic Raycaster 组件的 enable 设置为 false，或者直接删除 Graphic Raycaster 组件。<br>UGUI 有很多点击方法的时间，下面来看一下，接口对应的方法就不写了，这里好像都是一个接口里面只有一个方法，而且继承了接口的话，在代码中不实现也会报错。</p>
 <ul>
-<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IPointerEnterHandler.html" target="_blank" rel="noopener">IPointerEnterHandler</a> 指针（鼠标之类的）进入该区域的时候调用。</li>
-<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IPointerExitHandler.html" target="_blank" rel="noopener">IPointerExitHandler</a> 指针离开该区域的时候调用。</li>
-<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IPointerDownHandler.html" target="_blank" rel="noopener">IPointerDownHandler</a> 指针按下的时候调用。</li>
-<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IPointerUpHandler.html" target="_blank" rel="noopener">IPointerUpHandler</a> 鼠标抬起时调用。</li>
-<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IPointerClickHandler.html" target="_blank" rel="noopener">IPointerClickHandler</a> 按下并抬起的时候调用，也就是点击的时候。</li>
-<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IInitializePotentialDragHandler.html" target="_blank" rel="noopener">IInitializePotentialDragHandler</a> 拖动初始化，不能获取到方向。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IPointerEnterHandler.html" target="_blank" rel="noopener">IPointerEnterHandler</a> 当指针进入对象时调用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IPointerExitHandler.html" target="_blank" rel="noopener">IPointerExitHandler</a> 当指针退出对象时调用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IPointerDownHandler.html" target="_blank" rel="noopener">IPointerDownHandler</a> 在对象上按下指针时调用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IPointerUpHandler.html" target="_blank" rel="noopener">IPointerUpHandler</a> 松开指针时调用（在指针正在点击的游戏对象上调用）。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IPointerClickHandler.html" target="_blank" rel="noopener">IPointerClickHandler</a> 在同一对象上按下再松开指针时调用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IInitializePotentialDragHandler.html" target="_blank" rel="noopener">IInitializePotentialDragHandler</a>在找到拖动目标时调用，可用于初始化值，不能获取到方向。</li>
 <li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IBeginDragHandler.html" target="_blank" rel="noopener">IBeginDragHandler</a> 刚开始拖动的时候调用，并且可以获取到拖动的方向。</li>
 <li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IDragHandler.html" target="_blank" rel="noopener">IDragHandler</a> 滑动持续时调用。</li>
 <li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IEndDragHandler.html" target="_blank" rel="noopener">IEndDragHandler</a> 滑动结束时调用。</li>
 <li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IDropHandler.html" target="_blank" rel="noopener">IDropHandler</a> 落下时调用。</li>
-<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IScrollHandler.html" target="_blank" rel="noopener">IScrollHandler</a> 鼠标滚轮持续时调用。</li>
-<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IUpdateSelectedHandler.html" target="_blank" rel="noopener">IUpdateSelectedHandler</a> 选择时调用，只针对 Selectable 起作用。</li>
-<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.ISelectHandler.html" target="_blank" rel="noopener">ISelectHandler</a> 选择后调用，只针对 Selectable 起作用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IScrollHandler.html" target="_blank" rel="noopener">IScrollHandler</a> 当鼠标滚轮滚动时调用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IUpdateSelectedHandler.html" target="_blank" rel="noopener">IUpdateSelectedHandler</a> 每次勾选时在选定对象上调用，只针对 Selectable 起作用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.ISelectHandler.html" target="_blank" rel="noopener">ISelectHandler</a> 当对象成为选定对象时调用，只针对 Selectable 起作用。</li>
 <li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IDeselectHandler.html" target="_blank" rel="noopener">IDeselectHandler</a> 取消选择的时候调用，因为只能选择一个 Selectable ，当选择新的之后，之前选择的都会回调取消选择事件。</li>
 <li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.IMoveHandler.html" target="_blank" rel="noopener">IMoveHandler</a> 选择后，可监听上下左右 WASD 方向键。如果访问 eventData.moveDir 还可以取到具体移动的方向。</li>
-<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.ISubmitHandler.html" target="_blank" rel="noopener">ISubmitHandler</a> 按钮按下事件。</li>
-<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.ICancelHandler.html" target="_blank" rel="noopener">ICancelHandler</a> 按钮取消事件，按下时按 Esc 键可取消。<br>下面演示如何让 image 反馈点击事件：<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：Script_05_06.cs</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.EventSystems;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Script_05_06</span> : <span class="title">MonoBehaviour</span>, <span class="title">IPointerClickHandler</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnPointerClick</span>(<span class="params">PointerEventData eventData</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Debug.Log(<span class="string">"image 被点击了"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.ISubmitHandler.html" target="_blank" rel="noopener">ISubmitHandler</a> 按下 Submit 按钮时调用。</li>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.ICancelHandler.html" target="_blank" rel="noopener">ICancelHandler</a> 按下 Cancel 按钮时调用。<br>下面演示如何让 image 反馈点击事件：<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：Script_05_06.cs</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.EventSystems;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Script_05_06</span> : <span class="title">MonoBehaviour</span>, <span class="title">IPointerClickHandler</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnPointerClick</span>(<span class="params">PointerEventData eventData</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Debug.Log(<span class="string">"image 被点击了"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -192,50 +192,79 @@
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GetWorldCorners</span>(<span class="params">Vector3[] fourCornersArray</span>)</span>;</span><br></pre></td></tr></table></figure>
 
 <p>但是从功能上来说的话，其实 <code>fourCornersArray</code> 的参数更像是出参，我也做了一个实验，可以看到如果在调用前数组没有分配内存的话，Fun2 是会报错的，因为数组此时为 null，但是使用 Fun1 的话就不会出现这个问题，而官方应该是按照 Fun2 来实现的，所以有些不明白其中的奥义所在。</p>
-<pre><code class="cs"><span class="comment">// 解决方案名：csharpTest</span>
-<span class="comment">// 项目名：inOutTest</span>
-<span class="keyword">using</span> System;
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解决方案名：csharpTest</span></span><br><span class="line"><span class="comment">// 项目名：inOutTest</span></span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">inOutTest</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Fun1</span>(<span class="params"><span class="keyword">out</span> A[] a</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            a = <span class="keyword">new</span> A[<span class="number">4</span>] &#123; <span class="keyword">new</span> A&#123; a=<span class="number">1</span>,b = <span class="string">"m"</span>&#125;,<span class="keyword">new</span> A&#123; a = <span class="number">2</span>, b = <span class="string">"mm"</span> &#125;,</span><br><span class="line">                            <span class="keyword">new</span> A&#123; a=<span class="number">3</span>,b = <span class="string">"mmm"</span>&#125;,<span class="keyword">new</span> A&#123; a = <span class="number">4</span>, b = <span class="string">"mmmm"</span> &#125;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Fun2</span>(<span class="params">A[] ass</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            ass[<span class="number">0</span>] = <span class="keyword">new</span> A &#123; a = <span class="number">1</span>, b = <span class="string">"m"</span> &#125;;</span><br><span class="line">            ass[<span class="number">1</span>] = <span class="keyword">new</span> A &#123; a = <span class="number">2</span>, b = <span class="string">"mm"</span> &#125;;</span><br><span class="line">            ass[<span class="number">2</span>] = <span class="keyword">new</span> A &#123; a = <span class="number">3</span>, b = <span class="string">"mmm"</span> &#125;;</span><br><span class="line">            ass[<span class="number">3</span>] = <span class="keyword">new</span> A &#123; a = <span class="number">4</span>, b = <span class="string">"mmmm"</span> &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            A[] ass <span class="comment">/* 可以在这里断开来试试，Fun2 会报错 */</span> = <span class="keyword">new</span> A[<span class="number">4</span>];</span><br><span class="line">            <span class="comment">// Fun1(out ass);</span></span><br><span class="line">            Fun2(ass);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">foreach</span> (A aa <span class="keyword">in</span> ass)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(aa);</span><br><span class="line">            &#125;</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">A</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> a;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">string</span> b;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">string</span> <span class="title">ToString</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">string</span>.Format(<span class="string">"a = &#123;0&#125;,b = &#123;1&#125;"</span>, a, b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">``` </span><br><span class="line"><span class="meta"># 渗透 UI 事件</span></span><br><span class="line"><span class="meta">## 面生 API 简介</span></span><br><span class="line">- [EventSystem.RaycastAll](https:<span class="comment">//docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.EventSystem.html?q=raycastall#UnityEngine_EventSystems_EventSystem_RaycastAll_UnityEngine_EventSystems_PointerEventData_System_Collections_Generic_List_UnityEngine_EventSystems_RaycastResult__)</span></span><br><span class="line">``` cs</span><br><span class="line">RaycastAll(PointerEventData, List&lt;RaycastResult&gt;)</span><br></pre></td></tr></table></figure>
 
-<span class="keyword">namespace</span> <span class="title">inOutTest</span>
+<ul>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.PointerEventData.html#UnityEngine_EventSystems_PointerEventData_pointerCurrentRaycast" target="_blank" rel="noopener">PointerEventData.pointerCurrentRaycast</a><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> RaycastResult pointerCurrentRaycast &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>与当前事件关联的 RaycastResult。</p>
+<ul>
+<li><a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.ExecuteEvents.html?q=ExecuteEvents#UnityEngine_EventSystems_ExecuteEvents_pointerClickHandler" target="_blank" rel="noopener">ExecuteEvents.pointerClickHandler</a><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> ExecuteEvents.EventFunction&lt;IPointerClickHandler&gt; pointerClickHandler &#123; <span class="keyword">get</span>; &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>看到这个 <code>ExecuteEvents.EventFunction</code> 形式，我第一反应 <code>EventFunction</code> 应该是一个内部类或者结构体，但其实是一个委托声明。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> EventFunction&lt;T1&gt;(T1 handler, BaseEventData eventData);</span><br><span class="line">``` </span><br><span class="line">类似 `pointerClickHandler` 的 <span class="keyword">static</span> 对象都很多，可以直接通过参数传递，只需要再凑齐实现了 IPointerClickHandler 接口的对象，和 BaseEventData 就可以了，这里一般是 [PointerEventData](https:<span class="comment">//docs.unity3d.com/Packages/com.unity.ugui@1.0/api/UnityEngine.EventSystems.PointerEventData.html)。最后三个参数一起调用 `ExecuteEvents.Execute()`</span></span><br><span class="line"><span class="meta">## 效果展示</span></span><br><span class="line"><span class="number">3</span> 个 UI 元素元素在 Scene 面板的摆放如图所示，（两个 Button 重叠在一起了）：</span><br><span class="line">![](/img/xys_5<span class="number">.2</span>_3.png)</span><br><span class="line">![](/img/xys_5<span class="number">.2</span>_4.png)</span><br><span class="line"></span><br><span class="line">在两个 Button 上注册点击事件,代码如下：</span><br><span class="line">``` cs</span><br><span class="line"><span class="comment">// 文件名：Script_05_11_2.cs</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.UI;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Script_05_11_2</span>:<span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Button button = gameObject.GetComponent&lt;Button&gt;();</span><br><span class="line">        button.onClick.AddListener(() =&gt; &#123; Debug.LogFormat(<span class="string">"&#123;0&#125;的 OnPointerClick 方法被调用"</span>, gameObject.name); &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果不加其他处理的话，那么当鼠标点击在 Image 和 Button 有重合的地方时，是不会有任何反应的，如果此时让 Image 实现 <code>IPointerClickHandler</code> 接口，再点击，会触发 Image 上点击事件的回调函数，但是不会触发两个 Button 的。所以如果想要让事件渗透到后面的 UI，参考代码如下：</p>
+<pre><code class="cs"><span class="comment">// 文件名：Script_05_11.cs</span>
+<span class="keyword">using</span> System.Collections;
+<span class="keyword">using</span> System.Collections.Generic;
+<span class="keyword">using</span> UnityEngine;
+<span class="keyword">using</span> UnityEngine.EventSystems;
+
+<span class="comment">// 实现渗透 UI 事件</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Script_05_11</span> : <span class="title">MonoBehaviour</span>, <span class="title">IPointerClickHandler</span><span class="comment">// , IPointerDownHandler, IPointerUpHandler</span>
 {
-    <span class="keyword">class</span> <span class="title">Program</span>
-    {
-        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Fun1</span>(<span class="params"><span class="keyword">out</span> A[] a</span>)</span>
-<span class="function"></span>        {
-            a = <span class="keyword">new</span> A[<span class="number">4</span>] { <span class="keyword">new</span> A{ a=<span class="number">1</span>,b = <span class="string">"m"</span>},<span class="keyword">new</span> A{ a = <span class="number">2</span>, b = <span class="string">"mm"</span> },
-                            <span class="keyword">new</span> A{ a=<span class="number">3</span>,b = <span class="string">"mmm"</span>},<span class="keyword">new</span> A{ a = <span class="number">4</span>, b = <span class="string">"mmmm"</span> }};
-        }
-        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Fun2</span>(<span class="params">A[] ass</span>)</span>
-<span class="function"></span>        {
-            ass[<span class="number">0</span>] = <span class="keyword">new</span> A { a = <span class="number">1</span>, b = <span class="string">"m"</span> };
-            ass[<span class="number">1</span>] = <span class="keyword">new</span> A { a = <span class="number">2</span>, b = <span class="string">"mm"</span> };
-            ass[<span class="number">2</span>] = <span class="keyword">new</span> A { a = <span class="number">3</span>, b = <span class="string">"mmm"</span> };
-            ass[<span class="number">3</span>] = <span class="keyword">new</span> A { a = <span class="number">4</span>, b = <span class="string">"mmmm"</span> };
-        }
-        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span>
-<span class="function"></span>        {
-            A[] ass <span class="comment">/* 可以在这里断开来试试，Fun2 会报错 */</span> = <span class="keyword">new</span> A[<span class="number">4</span>];
-            <span class="comment">// Fun1(out ass);</span>
-            Fun2(ass);
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnPointerClick</span>(<span class="params">PointerEventData eventData</span>)</span>
+<span class="function"></span>    {
+        Debug.LogFormat(<span class="string">"{0} 的 OnPointerClick 方法被调用"</span>, gameObject.name);
 
-            <span class="keyword">foreach</span> (A aa <span class="keyword">in</span> ass)
-            {
-                Console.WriteLine(aa);
-            }
-            Console.ReadKey();
-        }
+        <span class="comment">// PassEvent&lt;ISubmitHandler&gt;(eventData, ExecuteEvents.submitHandler);</span>
+        PassEvent&lt;IPointerClickHandler&gt;(eventData, ExecuteEvents.pointerClickHandler);
     }
-    <span class="keyword">class</span> <span class="title">A</span>
+
+    <span class="comment">// 感觉没啥必要，干扰试验，一个 Click 就够了</span>
+    <span class="comment">//public void OnPointerDown(PointerEventData eventData)</span>
+    <span class="comment">//{</span>
+    <span class="comment">//    Debug.LogFormat("{0} 的 OnPointerDown 方法被调用", gameObject.name);</span>
+    <span class="comment">//    PassEvent&lt;IPointerDownHandler&gt;(eventData, ExecuteEvents.pointerDownHandler);</span>
+    <span class="comment">//}</span>
+
+    <span class="comment">//public void OnPointerUp(PointerEventData eventData)</span>
+    <span class="comment">//{</span>
+    <span class="comment">//    Debug.LogFormat("{0} 的 OnPointerUp 方法被调用", gameObject.name);</span>
+    <span class="comment">//    PassEvent&lt;IPointerUpHandler&gt;(eventData, ExecuteEvents.pointerUpHandler);</span>
+    <span class="comment">//}</span>
+
+    <span class="keyword">private</span> <span class="keyword">void</span> PassEvent&lt;T&gt;(PointerEventData data,ExecuteEvents.EventFunction&lt;T&gt; function)<span class="keyword">where</span> T:IEventSystemHandler
     {
-        <span class="keyword">public</span> <span class="keyword">int</span> a;
-        <span class="keyword">public</span> <span class="keyword">string</span> b;
-        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">string</span> <span class="title">ToString</span>(<span class="params"></span>)</span>
-<span class="function"></span>        {
-            <span class="keyword">return</span> <span class="keyword">string</span>.Format(<span class="string">"a = {0},b = {1}"</span>, a, b);
+        List&lt;RaycastResult&gt; results = <span class="keyword">new</span> List&lt;RaycastResult&gt;();
+        EventSystem.current.RaycastAll(data, results);
+
+        <span class="comment">// 可以看一下 results 的顺序，也因为发现了 Button 的话是 Text 在前面。</span>
+        <span class="comment">//foreach(RaycastResult re in results)</span>
+        <span class="comment">//{</span>
+        <span class="comment">//    Debug.Log(re.gameObject.name);</span>
+        <span class="comment">//}</span>
+
+        GameObject currentGo = data.pointerCurrentRaycast.gameObject;
+        <span class="keyword">foreach</span>(RaycastResult result <span class="keyword">in</span> results)
+        {
+            <span class="keyword">if</span>(result.gameObject != currentGo)
+            {
+                ExecuteEvents.Execute(result.gameObject, data, function);
+                <span class="comment">// 如果只想穿透一层就 break</span>
+                <span class="comment">// break;</span>
+            }
+
         }
     }
 }</code></pre>
-
+<p>将上面的代码挂到 Image 上，再点击 Image 和 Button 有重合的地方，就会出现三个点击事件的回调函数的输出。<br>这里要注意一下 EventSystem.current.RaycastAll 的返回值，如果不确定的话，最好打印出来看一下，因为当我将 Break 注释给取消掉之后，理所当然的认为应该会输出 Image 和 Button2 的点击事件回调函数的输出，但事实上只有 Image，因为在 Image 下面是 Text，而不是 Button2 里面的 Image。<br>书中是有注释中 <code>PassEvent&lt;ISubmitHandler&gt;(eventData, ExecuteEvents.submitHandler);</code> 这一句的，但是实验之后发现这样会导致每点击一次，每个 Button 上的点击事件回调函数都会执行两次。暂时不太清楚 <code>ISubmitHandler</code> 和 <code>IPointerClickHandler</code> 的区别和联系。</p>
+<h2 id="例子——新手引导聚合动画"><a href="#例子——新手引导聚合动画" class="headerlink" title="例子——新手引导聚合动画"></a>例子——新手引导聚合动画</h2>
         
         <br />
         <div id="comment-container">
