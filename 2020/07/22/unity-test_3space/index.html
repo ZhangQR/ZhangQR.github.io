@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Record my life and progress(maybe)">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Unity 三种空间 - ZhangQR的博客 | ZhangQR&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> A game,a show or a sing. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>zhangqr</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#三坐标介绍"><span class="toc-text">三坐标介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#坐标转化-API"><span class="toc-text">坐标转化 API</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#在世界坐标画出屏幕坐标的边界"><span class="toc-text">在世界坐标画出屏幕坐标的边界</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实战小技巧"><span class="toc-text">实战小技巧</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> A game,a show or a sing. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Unity 三种空间
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-07-22 22:32:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Unity" title="Unity">Unity</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="三坐标介绍"><a href="#三坐标介绍" class="headerlink" title="三坐标介绍"></a>三坐标介绍</h1><p>Unity 中有三种坐标。</p>
+<ul>
+<li><p><code>screen space</code> 也就是屏幕的坐标，由像素点来定义，左下角是 (0,0)，右上角是 (pixelWidth,pixelHeight)，The z position is in world units from the camera.<br><img src="/img/unity-test_3space_1.png" alt><br>可以通过 Screen.width/Screen.height 来获取最大宽度/长度的像素值，原则上如果一个主相机的视野铺满了屏幕，比如主相机，那么 <code>Camera.pixelWidth == Screen.width</code> 并且 <code>Camera.pixelHeight == Screen.height</code>, 但是巧的是我做实验的时候这个代码是在写 <code>OnDrawGizmos()</code> 里面的，这四个值就不是两两相等，将 Scene 面板放大或者缩小 <code>Screen.height/width</code> 会跟着变，很奇怪，但在 <code>OnGui()</code> 中写的话，就是两两相等的。<br><img src="/img/unity-test_3space_2.png" alt></p>
+</li>
+<li><p><code>viewport space</code> 视口坐标是标准的和相对于相机的。相机的左下角为（0，0）点，右上角为（1，1）点，Z的位置是以相机的世界单位来衡量的。有的图也会叫 viewport space 为 GUI Space。<br><img src="/img/unity-test_3space_1.png" alt> </p>
+</li>
+<li><p><code>world space</code> 世界坐标，都懂，Transform.position。<br><img src="/img/unity-test_3space_4.png" alt></p>
+</li>
+<li><p>其实还有第四种，也就是 local space，是物体相对于父物体的坐标偏移。</p>
+</li>
+<li><p>还有第五种，也就是在 <code>OnGui()</code> 中使用的坐标，值得注意的是这个坐标左上角是 (0,0)，而右下角是 (Screen.width，Screen.height)。</p>
+</li>
+</ul>
+<h1 id="坐标转化-API"><a href="#坐标转化-API" class="headerlink" title="坐标转化 API"></a>坐标转化 API</h1><ul>
+<li>世界坐标 → 屏幕坐标：camera.WorldToScreenPoint(transform.position); 这样可以将世界坐标转换为屏幕坐标。其中 camera 为场景中的 camera 对象。</li>
+<li>屏幕坐标 → 视口坐标：camera.ScreenToViewportPoint(Input.GetTouch(0).position); 这样可以将屏幕坐标转换为视口坐标。其中 camera 为场景中的 camera 对象。</li>
+<li>视口坐标 → 屏幕坐标：camera.ViewportToScreenPoint();</li>
+<li>视口坐标 → 世界坐标：camera.ViewportToWorldPoint();</li>
+</ul>
+<h1 id="在世界坐标画出屏幕坐标的边界"><a href="#在世界坐标画出屏幕坐标的边界" class="headerlink" title="在世界坐标画出屏幕坐标的边界"></a>在世界坐标画出屏幕坐标的边界</h1><p>下面的代码用于实现将 Screen Space 的边界在 World Space 中画出来：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：ThreeSpaceTest.cs</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ThreeSpaceTest</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> Camera mainCam;  <span class="comment">// = Camera.main.GetComponent&lt;Camera&gt;(); // 不能在这里赋值</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        mainCam = Camera.main.GetComponent&lt;Camera&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnDrawGizmos</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Vector3 p = mainCam.ScreenToWorldPoint(<span class="keyword">new</span> Vector3(<span class="number">0</span>, <span class="number">0</span>, Camera.main.GetComponent&lt;Camera&gt;().nearClipPlane));</span><br><span class="line">        Vector3 p1 = mainCam.ScreenToWorldPoint(<span class="keyword">new</span> Vector3(<span class="number">0</span>, mainCam.pixelHeight,Camera.main.GetComponent&lt;Camera&gt;().nearClipPlane));</span><br><span class="line">        Vector3 p2 = mainCam.ScreenToWorldPoint(<span class="keyword">new</span> Vector3(mainCam.pixelWidth, mainCam.pixelHeight, Camera.main.GetComponent&lt;Camera&gt;().nearClipPlane));</span><br><span class="line">        Vector3 p3= mainCam.ScreenToWorldPoint(<span class="keyword">new</span> Vector3(mainCam.pixelWidth, <span class="number">0</span>, Camera.main.GetComponent&lt;Camera&gt;().nearClipPlane));</span><br><span class="line">        Gizmos.color = Color.red;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 这里的 4 个值不是两两相等的，并且拖动 Scene 面板，Screen 的两个值会跟着变</span></span><br><span class="line">        Debug.Log(mainCam.pixelWidth + <span class="string">" "</span> + Screen.width + <span class="string">" "</span> + mainCam.pixelHeight + <span class="string">" "</span> + Screen.height);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果将主相机调成正交模式的话，4 个球会正好出现在相机的较近切面的四个角上</span></span><br><span class="line">        Gizmos.DrawSphere(p, <span class="number">1.0f</span>);</span><br><span class="line">        Gizmos.DrawSphere(p1, <span class="number">1.0f</span>);</span><br><span class="line">        Gizmos.DrawSphere(p2, <span class="number">1.0f</span>);</span><br><span class="line">        Gizmos.DrawSphere(p3, <span class="number">1.0f</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// 四个值是两两相等的</span></span><br><span class="line">        GUILayout.TextField(<span class="keyword">string</span>.Format(<span class="string">"mainCam.pixelWidth = &#123;0&#125;\n"</span> +</span><br><span class="line">                                         <span class="string">"mainCam.pixelHeight = &#123;1&#125;\n"</span> +</span><br><span class="line">                                         <span class="string">"Screen.width = &#123;2&#125;\n"</span> +</span><br><span class="line">                                         <span class="string">"Screen.height = &#123;3&#125;\n"</span>, mainCam.pixelWidth, mainCam.pixelHeight, Screen.width, Screen.height));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>题外话：刚画出来的时候因为设置的球的半径很小，所以在 Scene 面板上转了好几圈都没找到，当时没想到把半径改大一点，结果还是把 p 打印出来，再放一个 Cube 到那个位置，F 定位 Cube 才找到小球球，瞬间感觉自己是瞎子。</p>
+<h1 id="实战小技巧"><a href="#实战小技巧" class="headerlink" title="实战小技巧"></a>实战小技巧</h1><p>因为物体只能在 World Space 中移动，所以很多时候我们都需要将坐标转化能 World Space 中的坐标再进行运算，而且还要提防物体不能超出我们的屏幕范围，可以通过下面代码获取屏幕坐标的边界 ( Z 轴的值有待商榷 )</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vector3 fullScreen = Camera.main.ScreenToWorldPoint(<span class="keyword">new</span> Vector3(Screen.width,Screen.height,<span class="number">10</span>));</span><br></pre></td></tr></table></figure>
+
+<p>然后用下面语句来判断场景中的物体是否出了相机范围：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (aRect.transform.position.y&gt;fullScreen.y) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://docs.unity3d.com/ScriptReference/Camera.html" target="_blank" rel="noopener">UnityEngine.Camera</a><br><a href="http://blog.projectmw.net/unitys-screen-point-viewport-point-and-world-point" target="_blank" rel="noopener">三种坐标图解</a><br><a href="https://zhuanlan.zhihu.com/p/27445146" target="_blank" rel="noopener">知乎四种坐标及其转换API</a><br><a href="https://answers.unity.com/questions/256817/about-world-space-and-local-space.html" target="_blank" rel="noopener">UnityAnswer</a></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/烂醉花间Dlitf">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZhangQR">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
