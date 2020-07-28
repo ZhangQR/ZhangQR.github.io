@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Record my life and progress(maybe)">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Canvas 组件 - ZhangQR的博客 | ZhangQR&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> A game,a show or a sing. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>zhangqr</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#自适应屏幕"><span class="toc-text">自适应屏幕</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Canvas-Scaler"><span class="toc-text">Canvas Scaler</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相机"><span class="toc-text">相机</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#锚点对齐方式"><span class="toc-text">锚点对齐方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#背景图全屏"><span class="toc-text">背景图全屏</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#布局组件"><span class="toc-text">布局组件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Canvas-优化"><span class="toc-text">Canvas 优化</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> A game,a show or a sing. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Canvas 组件
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-07-28 13:11:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Unity" title="Unity">Unity</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#宣雨松" title="宣雨松">宣雨松</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <p>Canvas 组件是 UI 的基础画布，所有的 UI 组件都在 Canvas 组件下面，并且支持嵌套，Canvas 有三种绘制方式,可在 Render Mode 中选择</p>
+<ul>
+<li>Screen Space Overlay，这个会把 UI 绘制在所有的游戏物体前面，注意需要将 Overlay 的 Canvas 放到 hierarchy 面板的最上面，避免不能完成自己想要的效果。</li>
+<li>Screen Space Camera，最常用，可以把正交摄像机投影出来的 UI 元素绘制在 Canvas 面板上。</li>
+<li>World Space，将整个 Canvas 当成一个 3D 物体放在场景中。</li>
+</ul>
+<p>如何区分前两中方式，其实可以放一张全黑的 image，然后加一个 Cube，如果是 Overlay 的渲染方式，那么不管 Cube 摆放在场景中的什么位置，都是看不到它的，如果是 Camera 的方式，用主相机的视角，那么将 Cube 放在 UI 的前面，就可以看到 Cube 了。</p>
+<h1 id="自适应屏幕"><a href="#自适应屏幕" class="headerlink" title="自适应屏幕"></a>自适应屏幕</h1><h2 id="Canvas-Scaler"><a href="#Canvas-Scaler" class="headerlink" title="Canvas Scaler"></a>Canvas Scaler</h2><p>Canvas 下还有一个 Canvas Scaler 组件，一般将 UI Scale Mode 设置为 Scale With Screen Size，确定了分辨率之后让 UI 美术人员按照这个屏幕尺寸来画图片和布局，Screen Match Mode 最好设置为 Expand，如果是 Match Width Or Height，可能会出现画面显示不全的问题。</p>
+<h2 id="相机"><a href="#相机" class="headerlink" title="相机"></a>相机</h2><p>游戏场景中一般有一个 3D 摄像机（主相机），还有一个 UI 摄像机（目前不知道 UI 摄像机用在哪里，猜测应该是新建一个摄像机，然后将 Render Mode 调整为 Screen Space Camera），最好是先渲染主相机，再渲染 UI 摄像机，这样 UI 就会出现在场景前面了，一般主相机的 Depth 值为 -1，我们只需要将 UI 摄像机调整为 &gt;0 即可。UI 摄像机还需要设置为是正交模式，Cilpping Planes 的最小值建议设置为 0，不然有时候有些 UI 会被剔除掉。</p>
+<h1 id="锚点对齐方式"><a href="#锚点对齐方式" class="headerlink" title="锚点对齐方式"></a>锚点对齐方式</h1><p>一直在用，不多说了。</p>
+<h1 id="背景图全屏"><a href="#背景图全屏" class="headerlink" title="背景图全屏"></a>背景图全屏</h1><p>背景图一般有两种方式，一种是允许图片变形，可以在 Rect Transform 设置允许横向纵向都支持拉伸，这样图片会一直跟屏幕大小保持一致，但是会产生形变；另一种是不允许形变，但当屏幕大小发生改变的时候，会产生适当的裁剪，实现方式是给 image 添加 Aspect Ratio Fitter 组件，并且在 Aspect Mode 中选择 Envelope Parent。</p>
+<h1 id="布局组件"><a href="#布局组件" class="headerlink" title="布局组件"></a>布局组件</h1><p>GUI 有一组 Layout 组件，Horizontal Layout Group,Vertical Layout Group,Grid Layout Group。书中还提到了 Content Size Fitter 组件，没太理解。</p>
+<h1 id="Canvas-优化"><a href="#Canvas-优化" class="headerlink" title="Canvas 优化"></a>Canvas 优化</h1><p>UGUI 会自动合并批次，原理是它会把一个 Canvas 下的所有元素合并在一个 Mesh 里。如果 Canvas 下的元素很多，任意一个元素发生位置、大小的改变，就需要重新合并所有元素的 Mesh。如果元素很多的话，就会发生卡顿。<br>比较好的做法是每个 UI 界面都设置成一个 Canvas，如果界面下元素较多的话，可以多嵌套几个 Canvas，尤其是会频繁改变位置的元素，这样可以降低合并 Mesh 的开销，但是 Canvas 套的太多的话，也会导致 DrawCall 上升，因为每个 Canvas 都会单独占用一个 DrawCall。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/烂醉花间Dlitf">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZhangQR">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
