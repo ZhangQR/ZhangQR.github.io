@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#自适应屏幕"><span class="toc-text">自适应屏幕</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Canvas-Scaler"><span class="toc-text">Canvas Scaler</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相机"><span class="toc-text">相机</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#锚点对齐方式"><span class="toc-text">锚点对齐方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#背景图全屏"><span class="toc-text">背景图全屏</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#布局组件"><span class="toc-text">布局组件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Canvas-优化"><span class="toc-text">Canvas 优化</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#自适应屏幕"><span class="toc-text">自适应屏幕</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Canvas-Scaler"><span class="toc-text">Canvas Scaler</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相机"><span class="toc-text">相机</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#锚点对齐方式"><span class="toc-text">锚点对齐方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#背景图全屏"><span class="toc-text">背景图全屏</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#布局组件"><span class="toc-text">布局组件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Canvas-优化"><span class="toc-text">Canvas 优化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
 </div>
     
 </div>
@@ -152,8 +152,20 @@
 <h2 id="相机"><a href="#相机" class="headerlink" title="相机"></a>相机</h2><p>游戏场景中一般有一个 3D 摄像机（主相机），还有一个 UI 摄像机（目前不知道 UI 摄像机用在哪里，猜测应该是新建一个摄像机，然后将 Render Mode 调整为 Screen Space Camera），最好是先渲染主相机，再渲染 UI 摄像机，这样 UI 就会出现在场景前面了，一般主相机的 Depth 值为 -1，我们只需要将 UI 摄像机调整为 &gt;0 即可。UI 摄像机还需要设置为是正交模式，Cilpping Planes 的最小值建议设置为 0，不然有时候有些 UI 会被剔除掉。</p>
 <h1 id="锚点对齐方式"><a href="#锚点对齐方式" class="headerlink" title="锚点对齐方式"></a>锚点对齐方式</h1><p>一直在用，不多说了。</p>
 <h1 id="背景图全屏"><a href="#背景图全屏" class="headerlink" title="背景图全屏"></a>背景图全屏</h1><p>背景图一般有两种方式，一种是允许图片变形，可以在 Rect Transform 设置允许横向纵向都支持拉伸，这样图片会一直跟屏幕大小保持一致，但是会产生形变；另一种是不允许形变，但当屏幕大小发生改变的时候，会产生适当的裁剪，实现方式是给 image 添加 Aspect Ratio Fitter 组件，并且在 Aspect Mode 中选择 Envelope Parent。</p>
-<h1 id="布局组件"><a href="#布局组件" class="headerlink" title="布局组件"></a>布局组件</h1><p>GUI 有一组 Layout 组件，Horizontal Layout Group,Vertical Layout Group,Grid Layout Group。书中还提到了 Content Size Fitter 组件，没太理解。</p>
+<h1 id="布局组件"><a href="#布局组件" class="headerlink" title="布局组件"></a>布局组件</h1><p>GUI 有一组 Layout 组件，Horizontal Layout Group（横向布局）,Vertical Layout Group（纵向布局）,Grid Layout Group（表格布局）。<br>将层次结构设置为：</p>
+<ul>
+<li>LayoutTest (Empty Game Object)<ul>
+<li>Image (Image)</li>
+<li>Text (Text)</li>
+<li>Image(1) (Image)</li>
+</ul>
+</li>
+</ul>
+<p>然后在 LayoutTest 上绑定 Horizontal Layout Group，三个子元素会自动调整为横向布局，此时仍然可以改变 LayoutTest 的大小，但是加上 Content Size Fitter，并且将 Horizontal Fit 和 Vertical Fit 都设置为 Preferred Size 之后，就无法改变 LayoutTest 的 Rect Transform 了。同理，将 Text 绑上 Content Size Fitter，并将 Horizontal Fit 设置为 Preferred Size，再将 Vertical Fit 设置为 Unconstrained，也就是 “锁定” 了 Text 的 Width，这样可以达到以下的效果，也就是直接修改 Text 的字号，依然可以保持下面的布局。<br><img src="/img/xys_5.3_1.png" alt><br>Content Size Fitter 组件可以重新计算子对象的 RectTransform 区域，所以如果子对象很多的话，效率就不是很高。也有可能是出于效率的考虑，Content Size Fitter 需要等一帧才能计算出正确的区域。如果想要立即取到正确的区域，那么可以使用：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);</span><br></pre></td></tr></table></figure>
+
 <h1 id="Canvas-优化"><a href="#Canvas-优化" class="headerlink" title="Canvas 优化"></a>Canvas 优化</h1><p>UGUI 会自动合并批次，原理是它会把一个 Canvas 下的所有元素合并在一个 Mesh 里。如果 Canvas 下的元素很多，任意一个元素发生位置、大小的改变，就需要重新合并所有元素的 Mesh。如果元素很多的话，就会发生卡顿。<br>比较好的做法是每个 UI 界面都设置成一个 Canvas，如果界面下元素较多的话，可以多嵌套几个 Canvas，尤其是会频繁改变位置的元素，这样可以降低合并 Mesh 的开销，但是 Canvas 套的太多的话，也会导致 DrawCall 上升，因为每个 Canvas 都会单独占用一个 DrawCall。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://blog.csdn.net/qq_26999509/article/details/53394854" target="_blank" rel="noopener">CSDN：UGUI之Content Size Fitter组件</a></p>
 
         
         <br />

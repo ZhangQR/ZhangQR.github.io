@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Record my life and progress(maybe)">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Atlas - ZhangQR的博客 | ZhangQR&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> A game,a show or a sing. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>zhangqr</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Atlas-介绍"><span class="toc-text">Atlas 介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#创建一个-Atlas"><span class="toc-text">创建一个 Atlas</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#读取-Atlas"><span class="toc-text">读取 Atlas</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Variant"><span class="toc-text">Variant</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#多图集管理"><span class="toc-text">多图集管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> A game,a show or a sing. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Atlas
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-07-30 17:17:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Unity" title="Unity">Unity</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#宣雨松" title="宣雨松">宣雨松</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="Atlas-介绍"><a href="#Atlas-介绍" class="headerlink" title="Atlas 介绍"></a>Atlas 介绍</h1><p>Mesh 是用来描述物体的外形的，贴图用来描述物体的外观，之前提到过每个 Canvas 都会自动合并下面的所有元素到一个 Mesh 里面。Mesh 虽然可以合并，但是如果贴图是分开的，那么每个贴图依然会多占用一个 DrawCall。为了减少 DrawCall，我们可以把多张图片合并到一个图片中，也就是图集(Atlas)。</p>
+<h1 id="创建一个-Atlas"><a href="#创建一个-Atlas" class="headerlink" title="创建一个 Atlas"></a>创建一个 Atlas</h1><ul>
+<li>在 Editor Setting 中将 Sprite Packer 中的 Mode 设置为 Always Enabled。</li>
+<li>在 Project 视图中通过 Create-&gt;Sprite Atlas 创建图集。</li>
+<li>可以将单张图片或者整个文件夹拖到 Objects for Packing 中。注意所有贴图的格式都要是 Sprite(2D and UI)。</li>
+<li>然后在 PC，Mac &amp; Linux Standalone settings 中勾选 Override for PC，Mac &amp; Linux Standalone，并设置图集大小和贴图压缩格式。</li>
+<li>最后点击 Pack Preview。<br>效果如图所示：<br><img src="/img/xys_5.3_3.png" alt><h1 id="读取-Atlas"><a href="#读取-Atlas" class="headerlink" title="读取 Atlas"></a>读取 Atlas</h1>Atlas 可以把很多 Sprite 合并到一起，如果有元素在运行期间需要更换图片，那么需要先加载这个图集，然后通过名字去读取 Sprite，名字就是 Sprite 在 Project 视图中的文件名。(那我如果在场景面板将一个 Canvas 里面所有的元素都设置好了图片，并且在运行期间不需要改变的话，那么图集还有用吗？)<br>代码如下:<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：Script_05_14.cs</span></span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.UI;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.U2D; <span class="comment">// SpriteAtlas</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Script_05_14</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> Image image;</span><br><span class="line">    <span class="keyword">private</span> SpriteAtlas m_SpriteAtlas;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        m_SpriteAtlas = Resources.Load(<span class="string">"New Sprite Atlas"</span>) <span class="keyword">as</span> SpriteAtlas;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">"&lt;size=20&gt;通过 Atlas 更改 Image 图片&lt;/size&gt;"</span>)) <span class="comment">// 原来这里可以用 HTML 语法</span></span><br><span class="line">        &#123;</span><br><span class="line">            image.sprite = m_SpriteAtlas.GetSprite(<span class="string">"yaogan1"</span>);</span><br><span class="line">            Debug.Log(image.sprite);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>但这里会发现图片分隔的地方带着点其他图片的边界，如下图所示：<br><img src="/img/xys_5.3_2.png" alt></p>
+<h1 id="Variant"><a href="#Variant" class="headerlink" title="Variant"></a>Variant</h1><p>新建一个图集，并且将 Type 设置为 Variant，然后将之前 Master 的图集放到 Master Atlas 中，Variant 图集没有自己的 Objects for Packing，所以他是 Master Atlas 的一份拷贝，可以设置不同的 Scale 和 压缩格式。</p>
+<h1 id="多图集管理"><a href="#多图集管理" class="headerlink" title="多图集管理"></a>多图集管理</h1><ul>
+<li>使用图集就是为了优化效率，避免过多的 DrawCall，但是图集也有大小限制。以移动平台为例，图集尽量不要超过 1024。如果图片太多，就要考虑将他们放到多个图集上。如果不同图集下的图片发生叠层（？）现象，那么 DrawCall 又会上去。</li>
+<li>尽可能把复用性强的图片放到一个公共图集下，每个 UI 系统有一个自己的私有图集。（？）由于战斗部分是最容易发生卡顿的地方，所以战斗下的 UI 尽可能合并在一个图集上。一定要将 UI 动静分离，频繁发生改变的 UI 元素要放在一个 Canvas 下。</li>
+<li>不是所有的图片都适合放到图集中。比如，几千个图标都放在一个图集中的话，如果游戏中只需要同时显示少部分图标，那么整个图集都会被载入内存中，图标的出现率有很高，所以那么大的图标图集内存几乎没机会释放，所以这一类的图片是不适合放到图集中的。</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://zhuanlan.zhihu.com/p/68420304" target="_blank" rel="noopener">知乎：一文看懂材质/纹理 Material, Texture, Shading, Shader 的区别</a><br><a href="https://blog.csdn.net/hihozoo/article/details/52913719" target="_blank" rel="noopener">CSDN：map、mesh、texture、material 和 shader 的联系</a><br><a href="https://docs.unity3d.com/2018.4/Documentation/Manual/VariantSpriteAtlas.html" target="_blank" rel="noopener">Unity Manual：Variant Sprite Atlas</a></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/烂醉花间Dlitf">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZhangQR">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
