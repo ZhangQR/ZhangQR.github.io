@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Record my life and progress(maybe)">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        01-2D-Controller - ZhangQR的博客 | ZhangQR&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> A game,a show or a sing. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>zhangqr</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#进度"><span class="toc-text">进度</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#导入素材"><span class="toc-text">导入素材</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理图片"><span class="toc-text">处理图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图层"><span class="toc-text">图层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置碰撞"><span class="toc-text">设置碰撞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置角色移动"><span class="toc-text">设置角色移动</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#版本一"><span class="toc-text">版本一</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> A game,a show or a sing. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        01-2D-Controller
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-07-31 12:21:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Unity-Project" title="Unity-Project">Unity-Project</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="进度"><a href="#进度" class="headerlink" title="进度"></a>进度</h1><h2 id="导入素材"><a href="#导入素材" class="headerlink" title="导入素材"></a>导入素材</h2><p>素材名：Sunny Land(Free)</p>
+<h2 id="处理图片"><a href="#处理图片" class="headerlink" title="处理图片"></a>处理图片</h2><ul>
+<li>设置背景，将 back 图片的每单元多少个像素点改为 16。</li>
+<li>处理地图元素，将 tileset 的每单元多少个像素点改为 16。并将其按照 16*16 像素的大小进行切割。放到 Tile Palette 中。如果格子之间有缝隙的话，可以将 Grid 的 Cell Size 都改成 0.99。 <h2 id="图层"><a href="#图层" class="headerlink" title="图层"></a>图层</h2>第一图层：Inspector 面板里面 Tag 的右边 Layer<br>第二图层：Renderer 组件里面的 Sorting Layer，越往下，越会绘制在前面，比如背景图就应该是最上面的图层。<br>第三级别：上面两个都相等的话，还可以修改 Order in Layer。数字越大，越在前面。<br>将背景放到第二图层的 BackGround，地图和主角都放到 FrontGround。<h2 id="设置碰撞"><a href="#设置碰撞" class="headerlink" title="设置碰撞"></a>设置碰撞</h2>为主角设置 Rigidbody 2D 和 Box Collider，为 tilemap 设置 Tilemap Collider 2D，这里可以将草之类的不会产生碰撞的物体在新建一个 tilemap。但是这样移动人物的时候会发现，人物走着走<h2 id="设置角色移动"><a href="#设置角色移动" class="headerlink" title="设置角色移动"></a>设置角色移动</h2><h3 id="版本一"><a href="#版本一" class="headerlink" title="版本一"></a>版本一</h3>移动就用 rigidbody 的 velocity 就可以了。</li>
+<li>第一点要注意的是 GetAxisRaw 只返回 0，-1，1，所以非常适合用来改变人物的朝向。</li>
+<li>关于为什么不需要判断 <code>if(axis != 0)</code>，其实原因只是因为一个浮点数用 != 或者 == 来判断看着很不爽，而且加不加其实是一样的，不加还要更保险一点，下面证明为什么加不加是一样的。<ul>
+<li>最终都会停下来，但是停下的原因不太一样，将加了 if 判断的设为 A 情况，不加的设为 B 情况。axis 会在方向键抬起之后，有一个平滑的过度到 0 的过程，所以 B 情况就是从 1-&gt;无限趋向于0-&gt;0。而 A 情况按道理来说应该只有 1-&gt;无限趋向于0 的过程，所以最终应该还是会保留一点速度的，但事实却不是这样，一是因为有摩擦力的作用，也就说即使在 Awake 里面给 Player 设定了一个速度，运行后它的速度也是递减到 0 的；二是 axis 最终无限趋向于 0 的值太小了，而 rigidbd.velocity 可能只保留有限位小数，最终截取到了 0。这个在我将地面的摩擦力改为 0 之后，将判断条件改为 <code>if(Mathf.Abs(axis)&gt;=1e-48f )</code>，-48 左右是一个分界点，更大的话最终会保留一点点速度，但更小的话，最终就会变成 0。</li>
+<li>所以说，A 情况 ( 这里用 A 情况会感觉变量未定义 &gt; &lt; )，一是会导致浮点数直接做相等的运算；二是多一次 if 判断；三是不符合 axis 一个平滑过渡到 0 的过程。</li>
+</ul>
+</li>
+<li>关于什么时候需要 * Time.deltaTime，因为这里是设置的速度，所以不应该 * 时间的，速度 * 时间应该是位移才对。</li>
+<li>出现的第一个问题就是人物在碰到坑的时候容易发生 Z 轴上的旋转，这需要将人物身上的 Rigidbody 的 Constraints 的 Freeze Rotation 给勾选上，这样就不会发生旋转了。</li>
+<li>出现的第二个问题，人物在移动时容易被一块一块的小方格碰撞体的缝隙所阻挡，也就是走着走着就走不动了。完美解决方法是在 tileMap 上再加一个 Composite Collider 2D，它会自动添加一个 Rigidbody 2D，需要将 Body Type 设置为 Static，不然地图会跟着一起掉下去的。最后将 Tilemap Collider 2D 的 Use By Composite 给勾选上。这样就可以将 tilemap 的碰撞体从一小块一小块变成一大块，提高了效率，也不会绊到主角行走。<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PlayerController</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> Rigidbody2D rigidbd;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">float</span> MoveSpeed;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        rigidbd = <span class="keyword">this</span>.GetComponent&lt;Rigidbody2D&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">float</span> axis = Input.GetAxis(<span class="string">"Horizontal"</span>);</span><br><span class="line">        <span class="keyword">float</span> axis_direction = Input.GetAxisRaw(<span class="string">"Horizontal"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置主角移动，这里不需要加 axis 是否等于 0 的判断，不然会出现漂移</span></span><br><span class="line">        <span class="comment">// 我觉得这里也不需要 * Time.Deltatime，因为如果改变的是位移的话，是需要 * 时间的，但这里改变的是速度。</span></span><br><span class="line">        rigidbd.velocity = <span class="keyword">new</span> Vector2(axis * MoveSpeed , rigidbd.velocity.y);</span><br><span class="line">        Debug.Log(rigidbd.velocity);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置主角方向旋转</span></span><br><span class="line">        transform.localScale = axis_direction == <span class="number">0</span> ? <span class="keyword">new</span> Vector3(transform.localScale.x,transform.localScale.y,transform.localScale.z) :</span><br><span class="line">            <span class="keyword">new</span> Vector3(axis_direction,transform.localScale.y,transform.localScale.z); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://space.bilibili.com/370283072/channel/detail?cid=85776" target="_blank" rel="noopener">B站：2D-Controller</a></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/烂醉花间Dlitf">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZhangQR">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
